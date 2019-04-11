@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+  ~ /* ------------------------------------------------------------------------------------
+  ~  * Copyright (c) SAS Institute Inc.
+  ~  *  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  * you may not use this file except in compliance with the License.
+  ~  * You may obtain a copy of the License at
+  ~  *
+  ~  * http://www.apache.org/licenses/LICENSE-2.0
+  ~  *
+  ~  *  Unless required by applicable law or agreed to in writing, software
+  ~  * distributed under the License is distributed on an "AS IS" BASIS,
+  ~  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  * See the License for the specific language governing permissions and
+  ~ * limitations under the License.
+  ~ ----------------------------------------------------------------------------------------*/
+  ~
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script>
+    function showGraphql(w) {
+        let href = `${window.location.protocol}//${window.location.host}${w}`;
+        window.open(href);
+    }
+</script>
+
+<h2> Welcome to Viya Graphql Demo</h2>
+<ul>
+    <li> <a href="javascript:showGraphql('/graphql')" target="_blank"> graphql IDE </a></li>
+    <li> <a href="javascript:showGraphql('/loanScore.html')" target="_blank" > Score a Loan </a></li>
+    <li> <a href="javascript:showGraphql('/sasPrint.html')"  target="_blank" > Print a SAS dataset </a></li>
+</ul>
+</body>
+</html>
