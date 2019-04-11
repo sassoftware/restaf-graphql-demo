@@ -111,3 +111,4 @@ You should get a page with a few links.
 
 1. Example of mutation
 2. Example of subscription
+3. More UI examples.
