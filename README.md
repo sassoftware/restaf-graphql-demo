@@ -52,9 +52,9 @@ The queries for a compute service program are prepended as macro variables.
 
 - src/lib - utility functions that are designed for reuse with schemas users might develop
 
-```text
-     The graphql schemas in this repository are only samples to demonstrate how easy it is to use them with SAS Viya. I am by no means an expert on writing good grapqhl schemas. Please contribute to the community if you design some cool schemas and resolvers that can be used with SAS Viya
-```
+
+> The graphql schemas in this repository are only samples to demonstrate how easy it is to use them with SAS Viya. I am by no means an expert on writing good grapqhl schemas. Please contribute to the community if you design some cool schemas and resolvers that can be used with SAS Viya
+
 
 ## restaf-graphql-server related code
 
