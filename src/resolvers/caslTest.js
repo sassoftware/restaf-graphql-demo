@@ -18,8 +18,10 @@
 'use strict';
 let caslBase = require('../lib/caslBase');
 
-module.exports = async function getLoanScore (parent, args, context) {
+module.exports = async function scoreLoan (_, args, context) {
 
+    console.log(args);
+    debugger;
     let { store } = context;
 
     let input = {
@@ -43,8 +45,9 @@ module.exports = async function getLoanScore (parent, args, context) {
             name  : 'GRADIENT_BOOSTING___BAD_2'
         }
     }
-    let result = await caslBase(store, input, env);
-    let score   = result.items('results', 'score');
+    let result = await caslBase(store,['argsToTable.casl','test.casl'], input, env);
+    debugger;
+    let score = result.items('results', 'score');
     return score;
 
 }

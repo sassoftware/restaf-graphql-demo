@@ -21,14 +21,14 @@
 // Note that the "parent" is the reportList from getcontent.js (content type main entry)
 //
 
-async function getImage (reportsList, args, context) { 
+module.exports = async function reportImage (reportsList, args, context) { 
     let {store} = context;
     debugger;
-    let image = await reportImage(store, reportsList);
+    let image = await ireportImage(store, reportsList);
     return image;
 }
 
-async function reportImage(store, reportsList) {
+async function ireportImage(store, reportsList) {
     let uri = reportsList.itemsCmd(reportsList.itemsList(0), 'self', 'link', 'uri');
     let data = {
         reportUri   : uri,
@@ -41,7 +41,7 @@ async function reportImage(store, reportsList) {
 
     let reportImages = store.getService('reportImages');
     let job          = await store.apiCall(reportImages.links('createJob'), p);
-    let status       = await store.jobState(job, { qs: { wait: 1.5} } , 10, 2);
+    let status       = await store.jobState(job, { qs: { wait: 2.0} } , 10, 2);
     
     if (status.data !== 'completed') {
         throw `Job failed with status of ${status.data}`;
@@ -51,4 +51,4 @@ async function reportImage(store, reportsList) {
     return image.items();
 
 }
-module.exports = getImage;
+

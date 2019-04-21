@@ -16,7 +16,7 @@
  *
  */
 'use strict';
-module.exports = function scoreAsJson(result, table){
+module.exports = function scoreAsJson (result, table){
     let data = result.items('tables', table);
     let itemRows = data.get('rows');
     let columns = [];

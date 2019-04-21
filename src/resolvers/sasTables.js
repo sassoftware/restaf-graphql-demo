@@ -16,7 +16,7 @@
  *
  */
 'use strict';
-module.exports = async function sasTables(parent){
+module.exports = async function sasTables (parent){
     let names = [];
     for (const key in parent.tables) {
         let name = {name: parent.tables[key] }

@@ -17,18 +17,12 @@
  */
 'use strict';
 // eslint-disable-next-line no-unused-vars
-module.exports = async function products(parent, args, context){
+let getSASTableRows = require('../lib/getSasTableRows');
+module.exports = async function products (parent, args, context){
     debugger;
     let {store} = context;
-    let tableLink = parent.tables['BUDGET'];
-    let table     = await store.apiCall(tableLink);
-    let columns = table.items().get('columns');
-    let row = table.items().get('rows').get(0);
-    let r = columns.map((c,i) => {
-        let rx = {name: c, value: row.get(i)};
-        return rx;
-    });
-
+    let r = await getSASTableRows(store, parent, 'BUDGET');
     return r;
-
 }
+
+

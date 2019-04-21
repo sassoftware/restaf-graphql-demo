@@ -16,26 +16,40 @@
  *
  */
 'use strict';
-module.exports = async function casSetup(store, actionSets){
+module.exports = async function casSetup (store, actionSets) {
 
-    let casManagement = store.rafObject('casManagement');
-    let servers = await store.apiCall(casManagement.links('servers'));
-    let p = { 
-            data: { name: 'graphql' }
-        };
-    let serverName = servers.itemsList(0);
-    
-    let session = await store.apiCall(servers.itemsCmd(serverName, 'createSession'), p);
-    
-    if (actionSets !== null){
-            let l = actionSets.length;
-            for (let i = 0; i < l ; i++){
-            let p = {
-                    action: 'builtins.loadActionSet',
-                    data  : { actionSet: actionSets[i]}
-            };
-            await store.runAction(session, p);
-            }
-    }
-    return session;
+	let session = null;
+	if (process.env.REUSECASSESSION === 'YES') {
+		let s = store.getAppData('casSession');
+		if (s !== null) {
+			session = s.toJS();
+			console.log('reusing session');
+		}
+	}
+
+	if (session === null){
+		let casManagement = store.rafObject('casManagement');
+		let servers       = await store.apiCall(casManagement.links('servers'));
+		let p = {
+			data: { name: 'graphql' }
+		};
+		let serverName = servers.itemsList(0);
+		session = await store.apiCall(servers.itemsCmd(serverName, 'createSession'), p);
+		if (actionSets !== null) {
+			let l = actionSets.length;
+			for (let i = 0; i < l; i++) {
+				let p = {
+					action: 'builtins.loadActionSet',
+					data  : { actionSet: actionSets[ i ] }
+				};
+				await store.runAction(session, p);
+			}
+		}
+
+		if (process.env.REUSECASSESSION === 'YES') {
+			store.setAppData('casSession', session);
+		}
+	}
+
+	return session;
 }

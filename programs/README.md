@@ -1,41 +1,37 @@
-# sasPrograms
+# Notes
 
-This repository has program snippets.
+This directory has program snippets that are used in the demos.
 
-It was developed primarily for use with the restaf-graphql-demos. 
 
 ## *.sas programs
-These assume that the query parameters from the graphql query are prepended as macros. For example if the graphql query is
 
-```
+The src/lib/spBase preprends the  macro statements for the query parameters to the *.sas snippets. For example if the graphql query is
+
+```graphql
  {
      wineProduction(firstyear: 2001 lastyear:2006){
        total
      }
  }
  ```
- The macros will be:
- ```
+
+ The generated macros will be:
+
  %let firstyear=2001;
  %let lastyear=2006;
- ```
+
 
 ## *.casl programs
-These assume that the query arguments from the query are prepended as casl dictionary and/or arrays. In these examples:
+
+The src/lib/caslBase.js prepends a casl dictionary _arg_ for the query parameters to the *.casl snippets.
 
    _arg_ == this holds the the query parameters 
 
-   _appEnv_ == this holds the application specific information like astore name, output table name etc... This is usually defined in the resolvers.
-
 The query example above uses casl the result will look as follows:
 
-```
-_arg_ = {firstyear=2001, lastyear=2006};
+\_arg\_ = {firstyear=2001, lastyear=2006};
 
 
-## Notes
+## jsonToDict functon
 
-There are no hard requirements to use this approach to pass parameters. You are welcome to work up alternate ways.
-
-But methinks this is cool :-)
-
+The function src/lib/jsonToDict.js converts standard js/JSON objects to a string that has the casl equivalent of these objects. You can use this function in your own resolvers to send any js object as a "parameter" to the casl program. For an example see src/lib/caslBase.js.

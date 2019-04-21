@@ -19,7 +19,7 @@
 
 let findReport = require('./findReport');
 
-module.exports = async function getReportImage(store, name) {
+module.exports = async function getReportImage (store, name) {
     debugger;
     
     let reportImages = store.rafObject('reportImages');

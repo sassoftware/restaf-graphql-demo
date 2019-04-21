@@ -8,6 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/appenv"></script>
 
 <style>
 		body {
@@ -107,7 +108,7 @@ let host;
 
 function setup() {   
    // viewDial(0.5, false);
-    host = `${window.location.protocol}//${window.location.host}`;
+    host =`${window.location.protocol}//${window.location.host}`;
     console.log(host);
 }
 function onSubmit() {

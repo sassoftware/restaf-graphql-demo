@@ -15,38 +15,28 @@
  * ---------------------------------------------------------------------------------------
  *
  */
-
-/*
- * Incoming parameters 
- *  _args_ = {input data to be scored} - this is used to create a cas table
- *   example: _arg_ = {a=10, b=20, c='xxxx'}
- *           must be a one-level dictionary
- * _appEnv_ = {app specific info) 
- *  example: _appEnv_ = {astore = { caslib= name= } } 
- *           can be as complex as needed
- * maketable is also included in the preamble
- */
- 
+   
 loadactionset "astore";
 
-/* create input table */
-makeTable(_args_, 'casuser', 'INPUTDATA' );
+print _args_;
 
-/* score */
+argsToTable(_args_, 'casuser', 'INPUTDATA' );
 
 action astore.score /
     table  = { caslib= 'casuser', name = 'INPUTDATA' } 
     rstore = { caslib= _appEnv_.astore.caslib,  name=_appEnv_.astore.name }
-    casout    = { caslib = 'casuser', name = 'OUTPUTDATA' replace= TRUE};
+    casout  = { caslib = 'casuser', name = 'OUTPUTDATA' replace= TRUE};
 
-/* load resulting table */
-action table.fetch r = result/
+action table.fetch r = result /
+    /*format = TRUE*/
+    table = {  caslib = 'casuser' name = 'INPUTDATA' } ;
+
+print result.Fetch;
+
+action table.fetch r = result /
     /*format = TRUE*/
     table = {  caslib = 'casuser' name = 'OUTPUTDATA' } ;
 
-/* send response back */
 score = result.Fetch[1].P_BAD;
 scoreo= {score= score};
-
 send_response(scoreo);
-

@@ -15,14 +15,24 @@
  * ---------------------------------------------------------------------------------------
  *
  */
-'use strict';
-let logLines = require('../lib/logLines');
-module.exports = async function sasLog (parent,args,context){
-    let {store}   = context;
-    let logResult = `<h1> No log </h1>`
-    if (parent.log !== null) {
-        let result = await store.apiCall(parent.log);
-        logResult = logLines(result);
-    }
-    return logResult;
-}
+function argsToTable(_arg_, caslib, name ); 
+    print 'in make table';
+	action table.droptable/
+	  caslib=caslib name=name quiet=TRUE;
+	  
+	i = 1;
+	do key,obj over _arg_; 
+	    columns[i] = key; 
+	    row[i] = obj; 
+	    if ( isString(obj) ) then 
+	       type[i] = 'varchar'; 
+	    else if ( isInteger(obj) ) then  
+		   type[i] = 'int'; 
+	    else type[i] = 'double'; 
+	    i = i + 1; 
+	    end;  
+	data1 = newTable('data1', columns, type, row ); 
+	saveresult data1 casout=name caslib=caslib replace; 
+	print 'temp table created';
+end; 
+ 

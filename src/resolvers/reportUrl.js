@@ -17,13 +17,10 @@
  */
 'use strict';
 
-let findReport = require('../lib/findReport');
-
-module.exports = async function getContent(parent, args, context){
+module.exports = async function reportUrl (reportList) {
     debugger;
-    let {store} = context;
-
-    // find the report and let graphql route it to children
-    let reportsList = await findReport(store, parent.name);
-    return reportsList;
+    let uri = reportList.itemsCmd(reportList.itemsList(0), 'self', 'link', 'uri');
+    let options = "&appSwitcherDisabled=true&reportViewOnly=true&printEnabled=true&sharedEnabled=true&informationEnabled=true&commentEnabled=true&reportViewOnly=true";
+    let href = `${process.env.VIYA_SERVER}/SASReportViewer/?reportUri=${uri}${options}`;
+    return href;
 }

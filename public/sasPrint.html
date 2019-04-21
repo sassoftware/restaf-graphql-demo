@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/appenv"></script>
 
     <style>
       body {
@@ -121,7 +122,8 @@
 
       function setup() {
         // viewDial(0.5, false);
-        host = `${window.location.protocol}//${window.location.host}`;
+        debugger;
+        host =`${window.location.protocol}//${window.location.host}`
         console.log(host);
       }
       function onSubmit() {
@@ -150,13 +152,12 @@
 
         let config = {
           url: host + '/graphql',
-          witnCredentials: true,
+          withCredentials: true,
           method: 'POST',
           data: payload
         }
         console.log(config);
         let r = await axios(config);
-        console.log(r.data.data.sasPrint.ods)
         return r.data.data.sasPrint.ods;
       }
     </script>

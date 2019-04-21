@@ -15,24 +15,15 @@
  * ---------------------------------------------------------------------------------------
  *
  */
-/*
- * convert a one-level casl dictionary into a cas Table - useful for scoring
- * The observant user will notice that it is an easy change to support multiple rows
- */
+'use strict';
 
-function makeTable(_arg_, caslib, name ); 
-	i = 1; 
-	do key,obj over _arg_; 
-	    columns[i] = key; 
-	    row[i] = obj; 
-	    if ( isString(obj) ) then 
-	       type[i] = 'varchar'; 
-	    else if ( isInteger(obj) ) then  
-		   type[i] = 'int'; 
-	    else type[i] = 'double'; 
-	    i = i + 1; 
-	    end;  
-	data1 = newTable('data1', columns, type, row ); 
-	saveresult data1 casout=name caslib=caslib replace; 
-end; 
- 
+let findReport = require('../lib/findReport');
+
+module.exports = async function reportView (_, args, context){
+    debugger;
+    let {store} = context;
+
+    // find the report and let graphql route it to get url and image as required
+    let reportsList = await findReport(store, args.name);
+    return reportsList;
+}

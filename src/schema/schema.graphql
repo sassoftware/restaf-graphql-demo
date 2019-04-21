@@ -19,15 +19,16 @@ const { gql } = require('apollo-server-hapi');
 const typeDefs = gql`
 
     type Report {  
-        name   : String
-        content: Content
+        name      : String
+        modifiedBy: String
+        modifiedOn: String
     }
  
-    type Content {
-        name : String
-        image: String
+    type ReportView {
         url  : String
+        image: String
     }
+
 
   # The "Query" type is the root of all GraphQL queries.
   
@@ -58,12 +59,11 @@ const typeDefs = gql`
       
     }
 
-    
-
     type Query {
         test   : String
-        reports(name: String): [Report]
-        loanScore(amount: Int assets: Int): Float
+        reports: [Report]
+        report(name: String): ReportView
+        scoreLoan(amount: Int assets: Int): Float
         sasPrint(table: String) : SASResults
         budget(budget: Int): Budget
         wineProduction(from: Int, to: Int): WineProduction
@@ -71,8 +71,3 @@ const typeDefs = gql`
 
 `;
 module.exports = typeDefs;
-/*
-extend type WineProduction {
-        report: SASResults
-    }
-*/

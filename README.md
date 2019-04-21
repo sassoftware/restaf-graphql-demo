@@ -10,7 +10,7 @@ graphql-restaf-demo  is a collection of graphql queries for SAS Viya. This repos
 
 The basic flow is as follows:
 
-![Flow](./graphqlFlow.png)
+![Flow](./graphqlFlow.jpeg)
 
 ---
 
@@ -22,7 +22,7 @@ The basic flow is as follows:
 
 2. reports: Get list of reports, images and report url for selected reports
 
-3. loanScore:  An example of scoring using a CAS scoring action
+3. scoreLoan:  An example of scoring using a CAS scoring action. A good example of using casl on the server
 
 4. The following examples use the compute service:
 
@@ -52,15 +52,18 @@ The queries for a compute service program are prepended as macro variables.
 
 - src/lib - utility functions that are designed for reuse with schemas users might develop
 
-
-> The graphql schemas in this repository are only samples to demonstrate how easy it is to use them with SAS Viya. I am by no means an expert on writing good grapqhl schemas. Please contribute to the community if you design some cool schemas and resolvers that can be used with SAS Viya
-
+> The graphql schemas in this repository are only samples to demonstrate the building of graphql API for SAs Viya Applications. I am by no means an expert on writing good grapqhl schemas. Please contribute to the community if you design some cool schemas and resolvers that can be used with SAS Viya.
 
 ## restaf-graphql-server related code
 
 - ./app.js - used to start the application server. Also used to specify user-defined routes
 
 - ./app.env - configuration for the application.
+
+## Programs and data
+
+- src/programs - SAS and casl programs used in the examples
+- src/data - scoring model(copy this to your Viya Server's Public caslib)
 
 ## Key Dependencies
 
@@ -76,7 +79,7 @@ The queries for a compute service program are prepended as macro variables.
 
     - Set the VIYA_SERVER to your server
     - Set authorization_code clientid and clientSecret
-    - Change the APPPORT if you want to use a different port( default is 5000)
+    - Optional: Change the APPPORT if you want to use a different port( default is 5000)
 
 ---
 
@@ -93,7 +96,7 @@ npm start
 In your browser enter
 
 ```script
-http://localhost:5000
+http://localhost:5000/graphqlapp
 
 ```
 
@@ -102,13 +105,3 @@ You should get a page with a few links.
 1. The first link will take you to the graphql playground where you can try the sample queries without worrying about writing code.
 
 2. The other links take you to some simple web applications using graphql.
-
----
-
-## Future demos
-
----
-
-1. Example of mutation
-2. Example of subscription
-3. More UI examples.

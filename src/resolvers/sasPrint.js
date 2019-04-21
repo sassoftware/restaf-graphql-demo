@@ -18,7 +18,7 @@
 'use strict';
 
 let spBase = require('../lib/spBase');
-module.exports = async function sasPrint(_, args, context){
+module.exports = async function sasPrint (_, args, context){
     let {store} = context;
     let code = `
         ods html style=barrettsblue;

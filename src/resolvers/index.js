@@ -16,41 +16,38 @@
  *
  */
  'use strict';
- let getReports       = require('./getReports');
- let getContent       = require('./getContent');
- let getImage         = require('./getImage');
- let getIframe        = require('./getIframe');
- let getLoanScore     = require('./getLoanScore');
- let sasPrint         = require('./sasPrint');
- let sasOds           = require('./sasOds');
- let sasLog           = require('./sasLog');
- let sasTables        = require('./sasTables');
- let budget           = require('./budget');
- let sasResults       = require('./sasResults');     
- let wineProduction   = require('./wineProduction');  
- let wines            = require('./wines');
+ let reports        = require('./reports');
+ let reportView     = require('./reportView');
+ let reportImage    = require('./reportImage');
+ let reportUrl      = require('./reportUrl');
+ let scoreLoan      = require('./scoreLoan');
+ let sasPrint       = require('./sasPrint');
+ let sasOds         = require('./sasOds');
+ let sasLog         = require('./sasLog');
+ let sasTables      = require('./sasTables');
+ let budget         = require('./budget');
+ let sasResults     = require('./sasResults');     
+ let wineProduction = require('./wineProduction');  
+ let wines          = require('./wines');
 
 const Query = {
-    reports: (parent, args, context, info) => getReports(parent, args, context, info),
-    test   : () => {
+    test: () => {
         debugger;
         return "Hello There - Welcome to demo of Graphql for SAS Viya";
     },
-    loanScore: (parent,args, context, info)  => getLoanScore (parent, args, context, info),
-    sasPrint : (parent, args, context, info) => sasPrint (parent, args, context, info),
-    budget   : (parent, args, context, info) => budget (parent, args, context, info),
+    reports: (parent, args, context, info) => reports(parent, args, context, info),
+    report : (parent, args, context, info) => reportView(parent, args, context, info),
 
+    scoreLoan: (parent,args, context, info)  => scoreLoan(parent, args, context, info),
+
+    sasPrint      : (parent, args, context, info) => sasPrint (parent, args, context, info),
+    budget        : (parent, args, context, info) => budget (parent, args, context, info),
     wineProduction: (parent, args, context, info) => wineProduction (parent, args, context, info),
 }
 
-
-const Report = {
-    content: (parent, args, context, info)  => getContent(parent, args, context, info)
-}
-
-const Content = {
-    image: (parent,args, context, info)  => getImage (parent, args, context, info),
-    url  : (parent,args, context, info)  => getIframe (parent, args, context, info)
+const ReportView = {
+    image: (parent,args, context, info)  => reportImage (parent, args, context, info),
+    url  : (parent,args, context, info)  => reportUrl (parent, args, context, info)
 }
 
 const SASResults = {
@@ -59,12 +56,10 @@ const SASResults = {
     tables: (parent,args, context, info)  => sasTables (parent, args, context, info)
 }
 
-
 const WineProduction = {
     report: (parent,args, context, info)  => sasResults (parent, args, context, info),
     wines : (parent,args, context, info)  => wines (parent, args, context, info)
-
 }
 
-module.exports = {Query, Report, Content, SASResults, WineProduction};
+module.exports = {Query, ReportView, SASResults, WineProduction};
  

@@ -24,7 +24,7 @@
 // Typical source locations: local file system, Viya job definition, github etc...
 //
 let fsPromises = require('fs').promises;
-module.exports = async function getProgram(store, ...args){
+module.exports = async function getProgram (store, args){
     let src = '';
     for (let i=0; i<args.length; i++){
         let s = await getSrc(store, args[i]);

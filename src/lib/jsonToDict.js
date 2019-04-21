@@ -22,7 +22,7 @@
  // TBD: convert to a c function using state machine but not critical for small json
  //
  
-module.exports = function jsonToDict(obj, name) {
+module.exports = function jsonToDict (obj, name) {
     let o1 = (Array.isArray(obj) === true)? handleArray(obj) : handleObject(obj)
     let o = `${name} = ${o1};`
     return o;

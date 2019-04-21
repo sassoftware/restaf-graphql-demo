@@ -19,7 +19,7 @@
 
 let runCompute = require('./runCompute');
 
-module.exports = async function spBase(store, args, src){
+module.exports = async function spBase (store, args, src){
  
     // generate macro variables
 

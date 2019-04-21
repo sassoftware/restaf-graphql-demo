@@ -17,6 +17,6 @@
  */
 'use strict';
 
-module.exports = async function sasResults(parent){
+module.exports = async function sasResults (parent){
     return parent;
 }
