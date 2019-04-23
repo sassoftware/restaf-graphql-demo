@@ -130,20 +130,20 @@ async function runScore(){
 
     let payload = {
         query: `query {
-            loanScore(amount: ${amount} assets: ${assets} )
+            scoreLoan(amount: ${amount} assets: ${assets} )
         }`
     }
 
     let config = {
         url            : host + '/graphql',
-        witnCredentials: true,
+        withCredentials: true,
         method         : 'POST',
         data           : payload
     }
     console.log(config);
 
     let r = await axios(config);
-    return r.data.data.loanScore;
+    return r.data.data.scoreLoan;
 
 }
 
