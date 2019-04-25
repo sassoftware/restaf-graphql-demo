@@ -1,20 +1,8 @@
 /*
- * ------------------------------------------------------------------------------------
- *   Copyright (c) SAS Institute Inc.
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- * ---------------------------------------------------------------------------------------
- *
- */
+ * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+*/
+ 
  'use strict';
  let reports        = require('./reports');
  let reportView     = require('./reportView');
@@ -29,6 +17,9 @@
  let sasResults     = require('./sasResults');     
  let wineProduction = require('./wineProduction');  
  let wines          = require('./wines');
+ let winesCas       = require('./winesCas');
+
+ let wineProductionCas = require('./wineProductionCas'); 
 
 const Query = {
     test: () => {
@@ -43,6 +34,8 @@ const Query = {
     sasPrint      : (parent, args, context, info) => sasPrint (parent, args, context, info),
     budget        : (parent, args, context, info) => budget (parent, args, context, info),
     wineProduction: (parent, args, context, info) => wineProduction (parent, args, context, info),
+
+    wineProductionCas: (parent, args, context, info) => wineProductionCas (parent, args, context, info)
 }
 
 const ReportView = {
@@ -61,5 +54,8 @@ const WineProduction = {
     wines : (parent,args, context, info)  => wines (parent, args, context, info)
 }
 
-module.exports = {Query, ReportView, SASResults, WineProduction};
+const WineProductionCas = {
+    wines: (parent,args, context, info)  => winesCas (parent, args, context, info)
+}
+module.exports = {Query, ReportView, SASResults, WineProduction, WineProductionCas};
  

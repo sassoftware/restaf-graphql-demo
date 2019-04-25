@@ -105,3 +105,23 @@ You should get a page with a few links.
 1. The first link will take you to the graphql playground where you can try the sample queries without worrying about writing code.
 
 2. The other links take you to some simple web applications using graphql.
+
+---
+
+## Using repo to jump start your application
+
+---
+
+## Developing your SAS stored process
+
+1. Develop the proper Schema - see WineProduction for an example and add it to the schema.graphql file.
+
+2. Copy wineProduction.js and wine.js and name it appropriately for your use case
+    - In your version of wineProduction.js change the wines.sas to your sas program
+    - In your version of wine.js change the table name WINE to your output table name
+
+3. In resolver.js add your information - see wineProduction resolver setup for example.
+
+4. You are now ready to run your stored process.
+
+## Developing your CAS stored process
