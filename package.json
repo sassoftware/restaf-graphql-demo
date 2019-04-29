@@ -4,7 +4,7 @@
   "description": "Useful demos of using graphql with SAS Viya",
   "main": "./src/app.js",
   "scripts": {
-    "start": "node app.js --env=../graphqlapp2.env --appenv=appEnv.js",
+    "start": "node app.js --env=app.env --appenv=appEnv.js",
     "indocker": "node app.js --appenv=testEnv.js",
     "dockerbuild": "docker build -t graphqlapp .",
     "dockerrun": "docker run -p 5000:5000 graphqlapp"
