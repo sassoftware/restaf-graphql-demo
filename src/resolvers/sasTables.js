@@ -6,8 +6,7 @@
 module.exports = async function sasTables (parent){
     let names = [];
     for (const key in parent.tables) {
-        let name = {name: parent.tables[key] }
-        names.push(name);
+        names.push(key);
     }
     return names;
 }

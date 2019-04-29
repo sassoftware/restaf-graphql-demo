@@ -11,10 +11,17 @@
     let [fromYear, setFromYearSelection]      = useState(null);
     let [toYear, setToYearSelection]          = useState(null);
     let [resultValues, setResultValues]       = useState(null);
-    let [ods, setODS]                         = useState(null);
+    let [reportValues, setReportValues]       = useState(null);
     let [graphqlQuery]                        = useState(props.graphqlQuery);
 
     let {host} = props;
+
+    //
+    // TBD:
+    //    Get all the hard-coded product values from the server using graphql
+    //    and make the calls using useEffect
+    //
+
     const products = [
         { value: 'year',       label: 'Year'},
         { value: 'merlot',     label: 'Merlot'},
@@ -94,14 +101,14 @@
                 }
             }
         }
-        setODS(null);
+        setReportValues(null);
         setResultValues(null);
         axios(payload)
          .then ( r => {
             let res = r.data.data.results;
             setResultValues(res.wines);
             if (res.report != null ) {
-                setODS(res.report.ods);
+                setReportValues(res.report);
             }
         
          })
@@ -151,7 +158,11 @@
                 </div>
                 <br/>
                 <div>
-                  {(ods !== null) ? <DisplayODS odsHTML={ods}></DisplayODS> : null}
+                  {(reportValues !== null && reportValues.ods !== null) ? <DisplayODS odsHTML={reportValues.ods}></DisplayODS> : null}
+                </div>
+                <br/>
+                <div>
+                {(reportValues !== null && reportValues.log !== null) ? <DisplayODS odsHTML={reportValues.log}></DisplayODS> : null}
                 </div>
 
             </div>;
