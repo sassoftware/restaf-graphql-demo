@@ -4,15 +4,16 @@
 */
 
 //
-// Notes: Retrieve a table and converts a SAS table to a json
-// TBD: Handle pagination when pagination is added to graphql schema
+// Notes: Retrieve a SAS table and convert to a json
 //
 'use strict';
 module.exports = async function getSasTableRows(store, computeSummary, tableName){
-    let tableLink = computeSummary.tables[tableName];
-    let table     = await store.apiCall(tableLink);
-    let columns   = table.items('columns');
 
+    let tableSelf = computeSummary.tables[tableName];
+    let t1        = await store.apiCall(tableSelf);
+    let table     = await store.apiCall(t1.links('rowSet'));
+
+    let columns   = table.items('columns');
     let rows = table.items('rows');
     let result = [];
 

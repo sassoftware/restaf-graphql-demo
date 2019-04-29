@@ -6,8 +6,6 @@
  //
  // Notes: Collects important relevant information from a compute server run.
  // This is particularly useful for getting to the tables easily in the rest of the app.
- // This version is a bit aggressive by doing more setup. 
- // TBD: scale back some of the setup and postpone some of the calls.
  // 
  
 async function computeSummary (store, job){
@@ -30,9 +28,7 @@ async function computeSummary (store, job){
                 if (type === 'ods') {
                     cResult.ods = results.itemsCmd(resultItem, 'self');
                 } else if (type === 'table') {
-                    let t1 = await store.apiCall(results.itemsCmd(resultItem, 'self'));
-                    // let rowSet = await store.apiCall(t1.links('rowSet'));
-                    cResult.tables[resultItem] = t1.links('rowSet');
+                    cResult.tables[resultItem] = results.itemsCmd(resultItem, 'self');
                 } else {
                     console.log (`what is ${type} ?`)
                 }
