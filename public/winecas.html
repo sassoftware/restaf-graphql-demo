@@ -19,8 +19,10 @@
     <script src="https://cdn.jsdelivr.net/npm/emotion@9.2.12/dist/emotion.umd.min.js"></script>
     <script src="https://unpkg.com/react-input-autosize@2.2.1/dist/react-input-autosize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-select/2.4.3/react-select.js"></script>
+    
 
-    <!--script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"></script-->
+
+    <!--script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"></script -->
     <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -33,7 +35,6 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script type="text/babel" src="/shared/components/SimpleTableFromJson.js"></script>
-    <script type="text/babel" src="/shared/components/displayODS.js"></script>
     <script type="text/babel" src="/shared/viewers/wineApp.js"></script>
     <script src="/appenv"></script>
 
@@ -65,7 +66,7 @@
       <script>
       function setup() {
         let host =`${window.location.protocol}//${window.location.host}`
-        wineApp(host, 'wineProduction', 'display');
+        wineApp(host, 'wineProductionCas', 'display');
       }
 
     </script>
@@ -74,7 +75,7 @@
   </head>
 
   <body onload="setup()">
-      <h1 class="h1"> Wine Production using Compute Service</h1>
+      <h1 class="h1"> Wine Production using CAS</h1>
         <div id="display">
          </div>
   </body>

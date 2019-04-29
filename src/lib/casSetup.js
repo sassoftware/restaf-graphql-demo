@@ -3,6 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 'use strict';
+//
+// Notes: This function creates a CAS session
+// See README file for notes on REUSeCASSESSION
+//
 module.exports = async function casSetup (store, actionSets) {
 
 	let session = null;
@@ -10,7 +14,6 @@ module.exports = async function casSetup (store, actionSets) {
 		let s = store.getAppData('casSession');
 		if (s !== null) {
 			session = s.toJS();
-			console.log('reusing session');
 		}
 	}
 

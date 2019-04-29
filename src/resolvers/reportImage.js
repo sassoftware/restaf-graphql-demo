@@ -10,7 +10,6 @@
 
 module.exports = async function reportImage (reportsList, args, context) { 
     let {store} = context;
-    debugger;
     let image = await ireportImage(store, reportsList);
     return image;
 }

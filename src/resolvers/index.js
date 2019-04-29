@@ -23,7 +23,6 @@
 
 const Query = {
     test: () => {
-        debugger;
         return "Hello There - Welcome to demo of Graphql for SAS Viya";
     },
     reports: (parent, args, context, info) => reports(parent, args, context, info),

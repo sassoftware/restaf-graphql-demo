@@ -4,18 +4,19 @@
 */
 
  //
- // collects important relevant information from a compute server run.
- // This is particularly useful for getting to the tables easily in the rest of the app
- //
+ // Notes: Collects important relevant information from a compute server run.
+ // This is particularly useful for getting to the tables easily in the rest of the app.
+ // This version is a bit aggressive by doing more setup. 
+ // TBD: scale back some of the setup and postpone some of the calls.
+ // 
+ 
 async function computeSummary (store, job){
-    debugger;
     let cResult = {
         log    : null,
         listing: null,
         ods    : null,
         tables : {}
     };
-    debugger;
     cResult.log     = job.links('log');
     cResult.listing = job.links('listing');
     let reportLink  = job.links('results');

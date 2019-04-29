@@ -5,7 +5,7 @@
  'use strict';
 
  //
- // TBD: Thorough testing
+ // Notes: convert a JSON to a CASL dictionary and return it in a string
  // TBD: convert to a c function using state machine but not critical for small json
  //
  
@@ -52,7 +52,7 @@ function handleArray(obj) {
             let type = typeof obj[k] ;
             if (type === 'object') {
                 let o = handleObject(obj[k]);
-                r = r + sep +  `${k}=` + o ;
+                r = r + sep  + o ;
             } else {
                 r = r + sep +  ((type === 'string') ? ` "${obj[k]}" ` : `${obj[k]}  `) ;
             }

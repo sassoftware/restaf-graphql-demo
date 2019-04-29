@@ -3,6 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 'use strict';
+//
+// Notes: Convert Loglines to html
+//
+
 module.exports = function logLines (folder) {
     let dataL = folder.items();
     let outAll = '';

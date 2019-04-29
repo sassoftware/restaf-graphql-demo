@@ -6,7 +6,10 @@
 let casSetup    = require('./casSetup');
 let jsonToDict  = require('./jsonToDict');
 let getProgram  = require('./getProgram');
-
+//
+// Notes: Function to call cas 
+// See README file for notes on REUSECASSESSION
+//
 module.exports = async function caslBase (store, srcFiles, input, env) {
     //
     // create casl statements for arguments and appenv
@@ -19,7 +22,7 @@ module.exports = async function caslBase (store, srcFiles, input, env) {
     //
     let scoreCaslCode = await getProgram(store, srcFiles);
     let code = inputData + ' ' + appEnv + ' ' + scoreCaslCode;
-
+    
 
     // setup payload for runAction
     let payload = {
@@ -33,7 +36,6 @@ module.exports = async function caslBase (store, srcFiles, input, env) {
    
     let session = await casSetup(store, null);
     let result  = await store.runAction(session, payload);
-    console.log(JSON.stringify(result.items(), null, 4));
     if (process.env.REUSECASSESSION === 'YES') {
         store.setAppData('casSession', session);
     } else {

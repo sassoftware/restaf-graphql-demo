@@ -28,10 +28,12 @@ data1 = newTable('data1', {'year', 'cabernet', 'merlot', 'pinot' , 'chardonnay',
 
 saveresult data1 casout='wineList' caslib = public replace; 
 
-where = 'year GE ' || _arg_.from || ' AND year LE ' || _arg_.to ;
+print _appEnv_;
+
+where = 'year GE ' || _args_.from || ' AND year LE ' || _args_.to ;
 action table.fetch r = result /
-    table = {  caslib = 'casuser' name = 'wineList' 
-               computedVars ={{name= 'total'}}
-               computedVarsProgram='total = cabernet + merlot + pinot + chardonnay + twobit;'
-               where=where } ;
+    table = {  caslib = 'casuser' name = 'wineList'
+               vars = _appEnv_._selections_
+               where=where },
+            ;
 send_response(result);

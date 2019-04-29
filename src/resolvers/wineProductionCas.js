@@ -4,18 +4,16 @@
 */
 'use strict';
 let caslBase = require('../lib/caslBase');
+let getSelections = require('../lib/getSelections');
 
-module.exports = async function wineProductionCas (_, args, context) {
-    let { store } = context;
-    console.log(args);
-  
-    let result = await caslBase(store,['argsToTable.casl', 'wineProductionCas.casl'], args, null);
-    debugger;
-    console.log(JSON.stringify(result, null,4));
-    let score = result.items('results', 'score');
-    console.log(score);
-   // console.log(JSON.stringify(result, null,4));
+module.exports = async function wineProductionCas (_, args, context, info) {
+    let {store} = context;
     
-    return score;
+    /* get the selection list from the AST and extened args with that information */
+    let selections = getSelections(info, 'wines', args);
 
+    /* execute setup and execute sccasl action on CAS */
+    let result = await caslBase(store,['argsToTable.casl', 'wines.casl'], selections.args,selections._selections_);
+   
+    return result;
 }

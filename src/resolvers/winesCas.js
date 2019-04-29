@@ -1,15 +1,15 @@
 /*
  * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
-*/
+ */
 'use strict';
-
-let getSasTableRows = require('../lib/getSASTableRows');
-// eslint-disable-next-line no-unused-vars
-module.exports = async function wines (parent, args, context){
-    debugger;
-    let {store} = context;
-    let rows= await getSasTableRows(store, parent, 'WINE');
+//
+// Notes: In a real use case this conversion can be done on the cas server
+// by resturning a dictionary with the rows of the table making this resolver
+// unnecessary - see the scoreLoan.js for an example
+//
+let casTableToJson = require('../lib/casTableToJson');
+module.exports = async function winesCas (parent){
+    let rows= casTableToJson(parent, 'Fetch');
     return rows;
-
 }

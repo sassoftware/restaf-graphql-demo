@@ -6,7 +6,6 @@
 // eslint-disable-next-line no-unused-vars
 let getSASTableRows = require('../lib/getSasTableRows');
 module.exports = async function products (parent, args, context){
-    debugger;
     let {store} = context;
     let r = await getSASTableRows(store, parent, 'BUDGET');
     return r;

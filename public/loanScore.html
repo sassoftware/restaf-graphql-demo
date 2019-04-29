@@ -113,7 +113,6 @@ let host;
 
 
 function setup() {   
-   // viewDial(0.5, false);
     host =`${window.location.protocol}//${window.location.host}`;
     console.log(host);
 }
@@ -123,7 +122,6 @@ function onSubmit() {
             viewDial(r);
         })
         .catch( e => {
-            debugger;
             console.log(e);
             alert(e);
         })
@@ -146,8 +144,6 @@ async function runScore(){
         method         : 'POST',
         data           : payload
     }
-    console.log(config);
-
     let r = await axios(config);
     return r.data.data.scoreLoan;
 

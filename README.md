@@ -125,3 +125,13 @@ You should get a page with a few links.
 4. You are now ready to run your stored process.
 
 ## Developing your CAS stored process
+
+1. Develop the proper Schema - see WineProductionCas for an example and add it to the schema.graphql file.
+
+2. Copy wineProductionCas.js and wine.js and name it appropriately for your use case
+    - In your version of wineProduction.js change the wines.sas to your sas program
+    - In your version of wineCas.js change the table name WINE to your output table name
+
+3. In resolver.js add your information - see wineProductionCas resolver setup for example.
+
+4. You are now ready to run your stored process.

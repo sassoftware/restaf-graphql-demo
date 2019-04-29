@@ -4,11 +4,12 @@
 */
 'use strict';
 
+//
+// Notes: Retrieve the image of the report from the server
+//
 let findReport = require('./findReport');
 
 module.exports = async function getReportImage (store, name) {
-    debugger;
-    
     let reportImages = store.rafObject('reportImages');
     
     let reportsList = await findReport(store, name);

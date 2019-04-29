@@ -4,6 +4,9 @@
 */
 'use strict';
 
+//
+// Notes: setup and run a sas program via compute service
+//
 let runCompute = require('./runCompute');
 
 module.exports = async function spBase (store, args, src){

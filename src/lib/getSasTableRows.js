@@ -2,10 +2,13 @@
  * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
 */
+
+//
+// Notes: Retrieve a table and converts a SAS table to a json
+// TBD: Handle pagination when pagination is added to graphql schema
+//
 'use strict';
-// eslint-disable-next-line no-unused-vars
 module.exports = async function getSasTableRows(store, computeSummary, tableName){
-    debugger;
     let tableLink = computeSummary.tables[tableName];
     let table     = await store.apiCall(tableLink);
     let columns   = table.items('columns');

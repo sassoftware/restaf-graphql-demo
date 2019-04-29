@@ -4,7 +4,6 @@
 */
 'use strict';
 module.exports = async function reports (_, args, context) {
-    debugger;
     let {store} = context;
     let reports = store.getService ('reports');
     
@@ -28,7 +27,6 @@ async function getList(store, reports) {
     }
 
     let  r = reportsList.itemsList().map (name => {
-            // console.log(JSON.stringify(reportsList.items(name), null, 4))
             let t = {
                 name      : name,
                 modifiedBy: reportsList.items(name, 'data', 'modifiedBy'),

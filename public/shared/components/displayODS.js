@@ -6,7 +6,6 @@
 function DisplayODS(props) {
     let {odsHTML} = props;
     let ihtml = {__html: odsHTML};
-    debugger;
     return (
         <div dangerouslySetInnerHTML={ihtml}></div>
     )

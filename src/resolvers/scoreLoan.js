@@ -7,7 +7,6 @@ let caslBase = require('../lib/caslBase');
 
 module.exports = async function scoreLoan (_, args, context) {
     let { store } = context;
-    console.log(args);
     let input = {
         JOB    : 'J1',
         CLAGE  : 100, 
@@ -30,10 +29,7 @@ module.exports = async function scoreLoan (_, args, context) {
         }
     }
     let result = await caslBase(store,['argsToTable.casl', 'score.casl'], input, env);
-    debugger;
     let score = result.items('results', 'score');
-    console.log(score);
-   // console.log(JSON.stringify(result, null,4));
     
     return score;
 

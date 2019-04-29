@@ -10,7 +10,6 @@ let getSasTableRows = require('../lib/getSasTableRows');
 
 module.exports = async function budget (_, args, context){
     let {store} = context;
-    debugger;
     // read source for budget.sas
     let src = await getProgram(store, ['budget.sas']); 
 
@@ -20,7 +19,6 @@ module.exports = async function budget (_, args, context){
     // get the rows from the table - satisfying the fields for the Budget type
     let row = await getSasTableRows(store, resultSummary, 'BUDGET');
 
-    console.log(row);
     return row[0];
 }
 

@@ -24,7 +24,7 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script type="text/babel" src="/shared/displayODS.js"></script>
+    <script type="text/babel" src="/shared/components/displayODS.js"></script>
     <script src="/appenv"></script>
     <style>
       .h1 {
@@ -52,42 +52,22 @@
 
       ;
     </style>
-  
 
-    <!--script type="text/babel">
-      function OdsDisplay(props) {
-        let {odsHTML} = props;
-        let ihtml = {__html: odsHTML};
-        debugger;
-        return (
-          <div dangerouslySetInnerHTML={ihtml}></div>
-        )
-      }
-      function odsDisplay(odsHTML, element) {
-         ReactDOM.render(<OdsDisplay odsHTML={odsHTML}/>, document.getElementById(element));
-      }
-    </script -->
 
     <script>
       let host;
       function setup() {
-        debugger;
         host = `${window.location.protocol}//${window.location.host}`;
         document.getElementById('msg').innerHTML = '<h1> Output here </h1>';
-        console.log(host);
       }
       function onSubmit() {
         document.getElementById('msg').innerHTML = '<h1> Running </h1>';
         runScore()
           .then(r => {
-            debugger;
             document.getElementById('msg').innerHTML = '';
             displayODS(r, 'ODS');
-            // document.getElementById('ODS').textContent = r;
-
           })
           .catch(e => {
-            debugger;
             console.log(e);
             alert(e);
           })

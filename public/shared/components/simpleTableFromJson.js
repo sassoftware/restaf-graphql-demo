@@ -6,25 +6,24 @@
 
 function SimpleTableFromJson(props) {
     let {data} = props;
-    debugger;
     // set column headers 
     let columns = Object.keys(data[0]);
    
-    let theadcols = columns.map(c => <th scope="col">{c}</th>);
-    let thead = <thead>{theadcols}</thead>;
+    let theadcols = columns.map(c => <th key={c} scope="col">{c}</th>);
+    let thead = <thead><tr>{theadcols}</tr></thead>;
 
     let trows = data.map( (dataRow, rowno) => {
         let rone = [];
         for ( let key in dataRow){
-            rone.push(<td>{dataRow[key]}</td>)
+            rone.push(<td key={key}>{dataRow[key]}</td>)
         }
-        return <tr>{rone}</tr>
+        return <tr key={rowno}>{rone}</tr>
     })
     let tbody = <tbody>{trows}</tbody>
 
 
-    let table = <div class="table-responsive-md">
-                    <table class="table table-bordered">
+    let table = <div className="table-responsive-md">
+                    <table className="table table-bordered">
                         {thead}
                         {tbody}
                     </table>

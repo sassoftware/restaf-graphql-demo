@@ -29,8 +29,8 @@ data wineList;
 run;  
     
 data wine ;  
-set winelist( where= (year GE &from && year LE &to));  
-total = cabernet + merlot + pinot + chardonnay + twobit;  
+set winelist( where= (year GE &from && year LE &to)); 
+keep &_selections_; 
 run;  
   
 ods html style=barrettsblue;  

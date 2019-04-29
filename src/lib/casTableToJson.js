@@ -3,15 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 'use strict';
-module.exports = function scoreAsJson (result, table){
+//
+// Notes: Convert a cas table to json
+//
+module.exports = function casTableToJson (result, table){
     let data = result.items('tables', table);
     let itemRows = data.get('rows');
     let columns = [];
     data.get('schema').map(s => {
         columns.push(s.get('name'));
     });
-
-   //  console.log(columns);
 
     let allResults = [];
     itemRows.map((r)=> {

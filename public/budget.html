@@ -54,20 +54,14 @@
     </style>
     <script>
       let svg;
-
       let host;
 
-
       function setup() {
-        // viewDial(0.5, false);
-        debugger;
         host =`${window.location.protocol}//${window.location.host}`
-        console.log(host);
       }
       function onSubmit() {
         runScore()
           .then(r => {
-            // document.getElementById('result').innerHTML = JSON.stringify(r,null,4);
             let t = [r];
             simpleTableFromJson(t, 'result');
           })
@@ -82,7 +76,6 @@
 
         let budget = document.getElementById('BUDGET').value;
         console.log(budget);
-        debugger;
         let payload = {
           query: `query {
             budget(budget: ${budget} )  { 
@@ -98,9 +91,7 @@
           method: 'POST',
           data: payload
         }
-        console.log(config);
         let r = await axios(config);
-        console.log(r.data);
         return r.data.data.budget;
       }
     </script>

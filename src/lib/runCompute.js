@@ -3,6 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 'use strict';
+//
+// Notes: Run compute service 
+//
 let computeSummary = require('../lib/computeSummary');
 module.exports = async function runCompute (store, code){
     
@@ -28,7 +31,6 @@ async function getSession(store) {
         if (s !== null) {
             session = s.toJS();
         }
-        console.log(session);
     }
     if (session === null) {
         let compute = store.getService('compute');

@@ -3,23 +3,25 @@
 * SPDX-License-Identifier: Apache-2.0
 */
  'use strict';
+
  function WineApp(props){
-    debugger;
     const {useState} = React;
     let [selections, setSelections]           = useState(null);
     let [reportSelection, setReportSelection] = useState(null);
     let [fromYear, setFromYearSelection]      = useState(null);
     let [toYear, setToYearSelection]          = useState(null);
     let [resultValues, setResultValues]       = useState(null);
+    let [ods, setODS]                         = useState(null);
+    let [graphqlQuery]                        = useState(props.graphqlQuery);
 
     let {host} = props;
     const products = [
-        { value: 'year', label: 'Year'},
-        { value: 'merlot', label: 'Merlot'},
+        { value: 'year',       label: 'Year'},
+        { value: 'merlot',     label: 'Merlot'},
         { value: 'chardonnay', label: 'Chardonnay'},
-        { value: 'cabernet', label: 'Cabernet Sauvignon'},
-        { value: 'pinot', label: 'Pinot Noir'},
-        { value: 'twobit', label: 'Twobit Jack'}
+        { value: 'cabernet',   label: 'Cabernet Sauvignon'},
+        { value: 'pinot',      label: 'Pinot Noir'},
+        { value: 'twobit',     label: 'Twobit Jack'}
         ];
    
       const report = [
@@ -38,11 +40,11 @@
       ];
 
     const _onSelection = (selectedValues) => {
-        setSelections(selectedValues);
+        setSelections((selectedValues.length > 0) ? selectedValues : null);
     }
 
     const _onReportSelection = (selectedValues) => {
-        setReportSelection(selectedValues);
+        setReportSelection((selectedValues.length > 0) ? selectedValues : null);
     }
     const _onFromYearSelection = (selectedValues) => {
         setFromYearSelection(selectedValues);
@@ -52,30 +54,58 @@
     }
     
     const _onSubmit = () => {
-        console.log(host);
-        console.log('submit');
-        console.log(reportSelection);
-        console.log(selections);
-
-        let qvars = '';
-        selections.forEach( r => {
-            qvars = qvars + ' ' + r.value;
-        });
-
-        let rvars = '';
-        reportSelections.forEach( r => {
-            rvars = rvars + ' ' + r.value;
-        })
-        let qt = {
-            from: fromYear,
-            to  : toYear
-        };
-        let gqString = `query wineProduction(from: ${fromYear} to: ${toYear}) {
-                          ${qvars} }`;
-        if (rreportSelections.length > 0 ) {
-            gqString = gqstring + ` report { ${rvars} }`
+        if ( selections === null || fromYear === null || toYear === null ) {
+            alert( 'Missing Information');
+            return;
         }
 
+        let qvars = '';
+        if (selections !== null){
+            selections.forEach( r => {
+                qvars = qvars + ' ' + r.value;
+            });
+        }
+
+        let rvars = '';
+        if (reportSelection !== null) {
+            rvars = 'report {';
+            reportSelection.forEach( r => {
+                rvars = rvars + ' ' + r.value;
+            })
+            rvars = rvars + ' }';
+        }
+
+        let gqString = `query userQuery($from: Int, $to: Int) {
+                           results: ${graphqlQuery}(from: $from to: $to) {
+                              wines { 
+                                  ${qvars} 
+                                } 
+                                ${rvars}
+                             } 
+                            }`;
+        let payload = {
+            url   : host + '/graphql',
+            method: 'POST',
+            data: { 
+                query: gqString,
+                variables: {
+                    from: fromYear.value,
+                    to  : toYear.value
+                }
+            }
+        }
+        setODS(null);
+        setResultValues(null);
+        axios(payload)
+         .then ( r => {
+            let res = r.data.data.results;
+            setResultValues(res.wines);
+            if (res.report != null ) {
+                setODS(res.report.ods);
+            }
+        
+         })
+         .catch( e => alert(e))
 
     }
     let show =  <div className="container">
@@ -102,21 +132,33 @@
                                             closeMenuOnSelect={false} isOpen={true}
                                         />
                                 </div>
-                                <div className="form-group">
-                                    <small id="repsel"> Report Options</small>
-                                    <Select value={reportSelection} isMulti={true} onChange={_onReportSelection} options={report}
-                                        closeMenuOnSelect={false} isOpen={true}
-                                    />     
-                                </div>
+                                {(graphqlQuery === 'wineProduction') ? 
+                                    <div className="form-group">
+                                        <small id="repsel"> Report Options</small>
+                                        <Select value={reportSelection} isMulti={true} onChange={_onReportSelection} options={report}
+                                            closeMenuOnSelect={false} isOpen={true}
+                                        />     
+                                    </div>
+                                    : null}
                             
                         </div>         
                 </div>
              
-                <button class="btn btn-primary"  onClick={_onSubmit}>Submit</button> 
-            </div>
+                <button className="btn btn-primary"  onClick={_onSubmit}>Submit</button> 
+                <br/>
+                <div>
+                   {(resultValues !== null) ? <SimpleTableFromJson data={resultValues}></SimpleTableFromJson> : null}
+                </div>
+                <br/>
+                <div>
+                  {(ods !== null) ? <DisplayODS odsHTML={ods}></DisplayODS> : null}
+                </div>
+
+            </div>;
+
     return show;
 }
 
-function wineApp(host, element){
-    ReactDOM.render(<WineApp host={host}/>, document.getElementById(element))
+function wineApp(host, graphqlQuery, element){
+    ReactDOM.render(<WineApp graphqlQuery={graphqlQuery} host={host}/>, document.getElementById(element))
 }

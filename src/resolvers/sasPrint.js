@@ -7,8 +7,6 @@
 let spBase = require('../lib/spBase');
 module.exports = async function sasPrint (_, args, context){
     let {store} = context;
-    debugger;
-    console.log(args);
     let code = `
         ods html style=barrettsblue;
         proc print data=&table;run;

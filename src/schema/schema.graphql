@@ -2,7 +2,7 @@
  * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
 */
- */
+
 const { gql } = require('apollo-server-hapi');
 const typeDefs = gql`
 
@@ -43,9 +43,7 @@ const typeDefs = gql`
         merlot    : Int
         pinot     : Int
         chardonnay: Int
-        twobit    : Int
-        total     : Int
-      
+        twobit    : Int 
     }
 
     type WineProductionCas {

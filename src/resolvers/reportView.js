@@ -7,7 +7,6 @@
 let findReport = require('../lib/findReport');
 
 module.exports = async function reportView (_, args, context){
-    debugger;
     let {store} = context;
 
     // find the report and let graphql route it to get url and image as required

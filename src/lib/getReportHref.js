@@ -3,11 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 'use strict';
+//
+// Notes: Create the href for viewing the report in the reportviewer
+//
 let findReport  = require('./findReport');
 async function getReportHref (store, name) {
-    debugger;
     let reportsList = await findReport(store, name);
-    debugger;
     if (reportsList === null) {
         return `${name} was not found`;
     }
