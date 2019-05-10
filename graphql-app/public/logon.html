@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+~ /* 
+~  * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+~ * SPDX-License-Identifier: Apache-2.0
+~ */
+-->
+
+<html lang="en">
+<head>
+    <title> restaf-graphql-demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/appenv"></script>
+    <style>
+        .page-header {
+            background: "blue";
+            color     : "#fff";
+            text-align: 'center';
+            padding   : '10px'
+        };
+
+    </style>
+    <script>
+        function logon() {
+            console.log(APPENV);
+            console.log(window.location.origin);
+            window.open(`${APPENV.host}/graphqlapp?next=${window.location.origin}/redirect.html`);
+        }
+            
+    </script>
+</head>
+<body>
+
+</body>
+</html>

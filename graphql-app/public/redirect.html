@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+~ /* 
+~  * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+~ * SPDX-License-Identifier: Apache-2.0
+~ */
+-->
+
+<html lang="en">
+<head>
+    <title> restaf-graphql-demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/appenv"></script>
+
+    <script>
+        function jumpToIndex() {
+            window.history.pushState({}, "Graphql Apps for SAS Viya", `${window.location.origin}/index.html}`);
+            window.history.go();
+        }
+            
+    </script>
+</head>
+<body onload="jumpToIndex()">
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+/* 
+ * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+*/
+-->
+
+<html lang="en">
+<head>
+    <title> restaf-graphql-demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/appenv"></script>
+    <style>
+        .page-header {
+            background: "blue";
+            color     : "#fff";
+            text-align: 'center';
+            padding   : '10px'
+        };
+
+    </style>
+    <script>;
+           let host = APPENV.host;
+            function show(w) {
+                let href = `${window.location.protocol}//${window.location.host}`;;
+                if ( w === '/graphql' || w === "/doc/index.html") {
+                   // href = `${window.location.protocol}//${window.location.host}`;
+                   href = host;
+                };
+                href =`${href}${w}`;
+                console.log(href);
+                window.open(href);
+            }
+            
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Welcome to Graphql Demo for SAS Viya</h1>  
+    </div>
+    <ul>
+        <li> <a href="javascript:show('/graphql')" target="_blank"> Graphql Playground </a></li>
+        <li> <a href="javascript:show('/loanScore.html')" target="_blank" > Score a Loan </a></li>
+        <li> <a href="javascript:show('/sasPrint.html')"  target="_blank" > Print a SAS dataset </a></li>
+        <li> <a href="javascript:show('/budget.html')"  target="_blank" > Budget </a></li>
+        <li> <a href="javascript:show('/wine.html')"  target="_blank" > Wine Production using Compute Service </a></li>
+        <li> <a href="javascript:show('/winecas.html')"  target="_blank" > Wine Production using CAS </a></li>
+    </ul>
+</div>
+</body>
+</html>

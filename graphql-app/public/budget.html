@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+~ /*
+~ * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+~ * SPDX-License-Identifier: Apache-2.0
+~ */
+-->
+<html>
+
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+
+    <script crossorigin src="https://unpkg.com/react/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script type="text/babel" src="/shared/components/simpleTableFromJson.js"></script>
+    <script src="/appenv"></script>
+
+    <style>
+      .h1 {
+        background-color: "blue";
+        color: '#fff';
+        padding: '10px';
+      }
+      .th {
+        text-align: center;
+      }
+      .button {
+        background-color: DodgerBlue;
+        /* Blue background */
+        border: none;
+        /* Remove borders */
+        color: white;
+        /* White text */
+        padding: 12px 16px;
+        /* Some padding */
+        font-size: 16px;
+        /* Set a font size */
+        cursor: pointer;
+        /* Mouse pointer on hover */
+      };
+    </style>
+    <script>
+      let svg;
+      let host;
+
+      function setup() {
+        host = APPENV.host;
+      }
+      function onSubmit() {
+        runScore()
+          .then(r => {
+            let t = [r];
+            simpleTableFromJson(t, 'result');
+          })
+          .catch(e => {
+            debugger;
+            console.log(e);
+            alert(e);
+          })
+      }
+
+      async function runScore() {
+
+        let budget = document.getElementById('BUDGET').value;
+
+        let payload = {
+          query: `query {
+            budget(budget: ${budget} )  { 
+              whitechocolate
+              darkchocolate
+            }
+        }`
+        }
+
+        let config = {
+          url: host + '/graphql',
+          withCredentials: true,
+          method: 'POST',
+          data: payload
+        }
+        let r = await axios(config);
+        return r.data.data.budget;
+      }
+    </script>
+
+
+  </head>
+
+  <body onload="setup()">
+
+      <div class="container">
+        <h1 class="h1"> Budget</h1>
+        <div class="content-form">
+          <form action="">
+            <div class="form-group">
+              <label for="BUDGET">BUDGET</label>
+              <input type="number" class="form-control" id="BUDGET" placeholder="Enter budget">
+            </div>
+  
+          </form>
+          <button class="btn btn-primary" onclick="onSubmit()">Submit</button>
+          <br><br>
+          <div id='msg'></div>
+        </div>
+        <div id="result"> </div>
+      </div>
+  </body>
+
+</html>
