@@ -1,0 +1,69 @@
+/*
+ * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+*/
+/** 
+ * lib
+ */
+/**
+ *
+ * Calls cas server and returns the results(async)
+ * 
+ * @async
+ * @module caslBase
+ * 
+ * @param {object} store    - restaf store
+ * @param {object} srcFiles - a list of sourcr file to read 
+ * @param {object} args     - args received from graphql server
+ * @param {object} env      - app specific vales
+ * 
+ * @returns {object}  standard return value from apiCall
+ */
+'use strict';
+let casSetup    = require('./casSetup');
+let jsonToDict  = require('./jsonToDict');
+let getProgram  = require('./getProgram');
+//
+// Notes: Function to call cas 
+// See README file for notes on REUSECASSESSION
+//
+module.exports = async function caslBase (store, srcFiles, args, env) {
+    //
+    // create casl statements for arguments and appenv
+    //
+    let _args_   = jsonToDict(args, '_args_');
+    let _appEnv_ = jsonToDict(env, '_appEnv_');
+
+    //
+    // Append cas program(s)
+    //
+    let scoreCaslCode = await getProgram(store, srcFiles);
+    let code = _args_ + ' ' + _appEnv_ + ' ' + scoreCaslCode;
+    
+
+    // setup payload for runAction
+    let payload = {
+        action: 'sccasl.runcasl',
+        data  : { code: code}
+    }
+
+    //
+    // create session, execute code, delete session, return results
+    //
+    
+    let session = await casSetup(store, null);
+    try {
+       let result  = await store.runAction(session, payload);
+       if (process.env.REUSECASSESSION === 'YES') {
+          store.setAppData('casSession', session);
+        } else {
+          await store.apiCall(session.links('delete'));
+          return result;
+        }
+    }
+    catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
+
