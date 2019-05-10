@@ -2,7 +2,6 @@
   "name": "graphql-demo",
   "version": "0.1.0",
   "description": "Useful demos of using graphql with SAS Viya",
-  "main": "app.js",
   "scripts": {
     "start": "npx restaf-server --env=app.env --appenv=appEnv.js",
     "debug": "npx restaf-server --env=app.env --appenv=appEnv.js"

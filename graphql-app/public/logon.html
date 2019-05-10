@@ -26,14 +26,16 @@
     </style>
     <script>
         function logon() {
+            debugger;
             console.log(APPENV);
-            console.log(window.location.origin);
-            window.open(`${APPENV.host}/graphqlapp?next=${window.location.origin}/redirect.html`);
+            let url = `${APPENV.logon}?next=${window.location.origin}/redirect.html`;
+            console.log(url);
+            window.open(url);
         }
             
     </script>
 </head>
-<body>
+<body onload="logon()">
 
 </body>
 </html>
