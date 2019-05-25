@@ -3,14 +3,12 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 
-function DisplayODS(props) {
+import React from 'react';
+function DisplayODSp(props) {
     let {odsHTML} = props;
     let ihtml = {__html: odsHTML};
     return (
         <div dangerouslySetInnerHTML={ihtml}></div>
     )
 }
-
-function displayODS(odsHTML, element) {
-    ReactDOM.render(<DisplayODS odsHTML={odsHTML}/>, document.getElementById(element));
-}
+export default DisplayODSp;

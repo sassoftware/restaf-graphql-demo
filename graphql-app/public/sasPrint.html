@@ -24,7 +24,7 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script type="text/babel" src="/shared/components/displayODS.js"></script>
+    <script src="/shared/uiLibrary.js"></script>
     <script src="/appenv"></script>
     <style>
       .h1 {
@@ -65,7 +65,8 @@
         runScore()
           .then(r => {
             document.getElementById('msg').innerHTML = '';
-            displayODS(r, 'ODS');
+            debugger;
+            uiLibrary.displayODS(r, 'ODS');
           })
           .catch(e => {
             console.log(e);
