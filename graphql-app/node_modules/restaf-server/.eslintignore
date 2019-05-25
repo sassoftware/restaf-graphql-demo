@@ -1,0 +1,4 @@
+node_modules
+public/reportapp
+public/shared
+reportapp.env
