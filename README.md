@@ -17,7 +17,7 @@ This repository has two projects
 1. Obtain a clientID and clientSecret for the authorization_code flow:
     - ClientId = graphqlserver
     - ClientSecret = secret
-    - redirect = http://localhost:5000/graphqlserver
+    - redirect = <http://localhost:5000/graphqlserver>
 
 2. npm install the dependencies, configure
 
