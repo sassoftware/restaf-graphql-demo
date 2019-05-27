@@ -30,7 +30,7 @@
             console.log(APPENV);
             let url = `${APPENV.logon}?next=${window.location.origin}/redirect.html`;
             console.log(url);
-            window.open(url);
+            window.location.replace(url);
         }
             
     </script>
