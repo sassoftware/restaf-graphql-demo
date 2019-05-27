@@ -7,7 +7,7 @@
 3. Examples of subscription
 4. More examples of schemas and resolvers for typical SAS Viya Application scenarios
 
-## Version 1.1.0
+## Version 1.2.0
 
 1. Use webpack to build the components for the viewers. This eliminates using inline react components. Also seems to make MS Edge happy.
 
