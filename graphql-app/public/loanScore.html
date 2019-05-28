@@ -143,10 +143,14 @@ async function runScore(amount, assets){
         data           : payload
     }
     let r = await axios(config);
-    if (r.data.hasOwnProperty('error')) {
-        console.log(JSON.stringify(r.data.errors, null,4));
+    if (r.data.hasOwnProperty('errors')) {
+        console.log(JSON.stringify(r.data, null,4));
+        alert(JSON.stringify(r.data, null,4));
+        return(350);
     }
-    return r.data.data.scoreLoan;
+   else {
+        return r.data.data.scoreLoan;
+   }
 
 }
 

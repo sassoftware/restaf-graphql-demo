@@ -33,15 +33,16 @@ module.exports = {
   entry: ["./src/index.js"],
 
   output: {
-    path: path.resolve(__dirname, "public/shared"),
+    path         : path.resolve(__dirname, "public/shared"),
     filename     : "uiLibrary.js",
     library      : "uiLibrary",
     libraryTarget: "umd"
   },
 
   externals: {
-     react     : "React",
-    "react-dom": "ReactDOM"
+    react      : "React",
+    "react-dom": "ReactDOM",
+    "axios"    : "axios"
   },
 
   module: {

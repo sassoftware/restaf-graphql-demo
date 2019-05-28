@@ -3,6 +3,7 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 function SimpleTableFromJsonp(props) {
     let {data} = props;
@@ -12,9 +13,9 @@ function SimpleTableFromJsonp(props) {
     let theadcols = columns.map(c => <th key={c} scope="col">{c}</th>);
     let thead = <thead><tr>{theadcols}</tr></thead>;
 
-    let trows = data.map( (dataRow, rowno) => {
+    let trows = data.map((dataRow, rowno) => {
         let rone = [];
-        for ( let key in dataRow){
+        for (let key in dataRow){
             rone.push(<td key={key}>{dataRow[key]}</td>)
         }
         return <tr key={rowno}>{rone}</tr>

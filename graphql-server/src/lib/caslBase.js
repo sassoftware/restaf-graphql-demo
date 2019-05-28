@@ -62,8 +62,9 @@ module.exports = async function caslBase (store, srcFiles, args, env) {
         }
     }
     catch (err) {
-        console.log(err);
-        throw err;
+        let m = new UserInputError('Casl programming errors', {casError: JSON.stringify(err, null,4)});
+        console.log(m);
+        throw m;
     }
 }
 
