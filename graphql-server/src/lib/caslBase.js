@@ -23,6 +23,8 @@
 let casSetup    = require('./casSetup');
 let jsonToDict  = require('./jsonToDict');
 let getProgram  = require('./getProgram');
+
+let {UserInputError} = require('apollo-server-hapi');
 //
 // Notes: Function to call cas 
 // See README file for notes on REUSECASSESSION
@@ -40,7 +42,8 @@ module.exports = async function caslBase (store, srcFiles, args, env) {
     let scoreCaslCode = await getProgram(store, srcFiles);
     let code = _args_ + ' ' + _appEnv_ + ' ' + scoreCaslCode;
     
-
+    // Patch for issues with sccasl.runcasl via REST API
+    code = code.replace(/\r/g, '');
     // setup payload for runAction
     let payload = {
         action: 'sccasl.runcasl',
@@ -63,8 +66,8 @@ module.exports = async function caslBase (store, srcFiles, args, env) {
     }
     catch (err) {
         let m = new UserInputError('Casl programming errors', {casError: JSON.stringify(err, null,4)});
-        console.log(m);
         throw m;
     }
 }
+
 
