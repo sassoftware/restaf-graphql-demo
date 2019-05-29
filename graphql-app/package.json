@@ -16,7 +16,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-select": "^2.4.3",
-    "restaf-server": "^6.5.0"
+    "restaf-server": "^6.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",

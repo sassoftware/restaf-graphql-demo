@@ -1,6 +1,6 @@
 {
   "name": "graphql-demo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Useful demos of using graphql with SAS Viya",
   "main": "app.js",
   "scripts": {
