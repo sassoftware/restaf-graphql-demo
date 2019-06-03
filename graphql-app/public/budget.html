@@ -27,6 +27,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="/shared/uiLibrary.js"></script>
+    <script src="/shared/postGraphqlQuery.js"></script>
     <script src="/appenv"></script>
 
     <style>
@@ -74,26 +75,21 @@
       }
 
       async function runScore() {
-
         let budget = document.getElementById('BUDGET').value;
 
-        let payload = {
-          query: `query {
-            budget(budget: ${budget} )  { 
-              whitechocolate
-              darkchocolate
+        let query = `query budget  ($budget: Int){
+          results: budget (budget: $budget){ 
+            whitechocolate
+            darkchocolate
             }
-        }`
+          }`;
+        
+        let filter = {
+          budget: parseInt(budget)
         }
 
-        let config = {
-          url: host + '/graphql',
-          withCredentials: true,
-          method: 'POST',
-          data: payload
-        }
-        let r = await axios(config);
-        return r.data.data.budget;
+        let data = await postGraphqlQuery(host, query, filter)
+        return data;
       }
     </script>
 

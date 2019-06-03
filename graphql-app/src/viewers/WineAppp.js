@@ -2,7 +2,7 @@ import React from "react";
 import SimpleTableFromJsonp from "./SimpleTableFromJsonp";
 import DisplayODSp from "./DisplayODSp";
 import Select from "react-select";
-import axios from 'axios';
+import queryGraphql from "../queryGraphql";
 
 function WineAppp(props) {
   const { useState } = React;
@@ -83,45 +83,34 @@ function WineAppp(props) {
     }
 
     let gqString = `query ${graphqlQuery}($from: Int, $to: Int){
-                           results: ${graphqlQuery}(from: $from, to: $to) {
-                              wines {
-                                  ${qvars} 
-                                } 
-                                ${rvars}
-                             } 
-                            }`;
-    let payload = {
-      url   : host + "/graphql",
-      method: "POST",
+          results: ${graphqlQuery}(from: $from, to: $to) {
+            wines {
+                ${qvars} 
+              } 
+              ${rvars}
+            } 
+          }`;
 
-      withCredentials: true,
-
-      data: {
-        query    : gqString,
-        variables: {
-          from: fromYear.value,
-          to  : toYear.value
-        }
-      }
+    let filter = {
+      from: fromYear.value,
+      to  : toYear.value
     };
+
     setReportValues(null);
     setResultValues(null);
     debugger;
-    axios (payload)
+    queryGraphql(host, gqString, filter)
       .then(r => {
-        if (r.data.hasOwnProperty('errors') === true) {
-            console.log(JSON.stringify(r.data, null,4));
-            alert(JSON.stringify(r.data, null,4));
-        } else {
-            let res = r.data.data.results;
-            setResultValues(res.wines);
-            if (res.report != null) {
-            setReportValues(res.report);
-            }
+        debugger;
+        let res = r;
+        console.log(res);
+        setResultValues(res.wines);
+        if (res.report != null) {
+          setReportValues(res.report);
         }
       })
-      .catch((e) => alert(e));
-    };
+      .catch(e => alert(JSON.stringify(e, null,4)));
+  };
 
   let show = (
     <div className="container">
@@ -178,7 +167,7 @@ function WineAppp(props) {
       <br />
       <div>
         {resultValues !== null ? (
-          <SimpleTableFromJsonp data={resultValues}></SimpleTableFromJsonp>
+          <SimpleTableFromJsonp data={resultValues} />
         ) : null}
       </div>
       <br />
@@ -190,7 +179,7 @@ function WineAppp(props) {
       <br />
       <div>
         {reportValues !== null && reportValues.log !== null ? (
-          <DisplayODSp odsHTML={reportValues.log} ></DisplayODSp>
+          <DisplayODSp odsHTML={reportValues.log} />
         ) : null}
       </div>
     </div>

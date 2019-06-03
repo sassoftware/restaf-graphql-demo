@@ -6,7 +6,8 @@
 import wineApp from './wineApp';
 import displayODS from './displayODS';
 import simpleTableFromJson from './simpleTableFromJson';
+import queryGraphql from './queryGraphql';
 const Viewers = require('./viewers');
 
-export {wineApp, displayODS, simpleTableFromJson, Viewers};
+export {wineApp, displayODS, simpleTableFromJson, queryGraphql, Viewers};
 
