@@ -13,7 +13,7 @@ module.exports = async function wineProductionCas (_, args, context, info) {
     let selections = getSelections(info, 'wines', true, args);
 
     /* execute setup and execute sccasl action on CAS */
-    let result = await caslBase(store,['argsToTable.casl', 'wines.casl'], selections.args,selections._selections_);
+    let result = await caslBase(store,['argsToTable.casl', 'resultsToDict.casl', 'wines.casl'], selections.args,selections._selections_);
    
     return result;
 }

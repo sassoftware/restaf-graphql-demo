@@ -17,7 +17,8 @@
  let sasResults     = require('./sasResults');     
  let wineProduction = require('./wineProduction');  
  let wines          = require('./wines');
- let winesCas       = require('./winesCas');
+ let casResults     = require('./casResults');
+  // let winesCas       = require('./winesCas');
 
  let wineProductionCas = require('./wineProductionCas'); 
 
@@ -54,7 +55,8 @@ const WineProduction = {
 }
 
 const WineProductionCas = {
-    wines: (parent,args, context, info)  => winesCas (parent, args, context, info)
+    wines: (parent,args, context, info)  => casResults (parent, args, context, info)
+    // Note: In the original blog casWines.js was used as the resolver.
 }
 module.exports = {Query, ReportView, SASResults, WineProduction, WineProductionCas};
  

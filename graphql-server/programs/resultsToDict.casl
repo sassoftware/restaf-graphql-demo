@@ -1,0 +1,9 @@
+function resultsToDict(r);
+    casResults = {};
+    i = 1;
+    do row over r;
+    casResults[i] = row;
+    i = i + 1;
+    end;
+    return casResults;
+end;

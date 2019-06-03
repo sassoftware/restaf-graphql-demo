@@ -4,10 +4,11 @@
  */
 'use strict';
 //
-// Notes: In a real use case this conversion can be done on the cas server
-// by resturning a dictionary with the rows of the table making this resolver
-// unnecessary - see the scoreLoan.js for an example
+// Notes: This code is here as an example of returning a table via Fetch action
+// Please see casResults.js for a better way to retrun results - the conversion to a JSON is done
+// on the cas server in wines.casl
 //
+
 let casTableToJson = require('../lib/casTableToJson');
 module.exports = async function winesCas (parent){
     let rows= casTableToJson(parent, 'Fetch');

@@ -1,0 +1,135 @@
+<h1> Writing your beerProduction Query and Resolvers</h1>
+
+
+<h2> Step 1 - casl code</h2>
+
+<ul>
+    <li> Copy wines.casl and call it beer.casl. </li>
+    <li> Change the data and main code appropriately</li>
+    <li> Make sure you use the resultsToDict function to create the output casResults</li>
+</ul>
+<pre>
+    data1 = newTable('data1', {'year', 'newcastle', 'courage', 'boltmaker' , 'boddingtonbitter', 'blacksheep'}, 
+    {'double', 'double'  , 'double', 'double', 'double',   'double'},
+    {2000,10,20,30,40,50},
+    {2001,5,10,15,5,0},
+    {2002,6,7,11,12,13},
+    {2003,5,8,0,0, 50},
+    {2004,11,5,7,8,100},
+    {2005,1,1,0,0,1000},
+    {2006,0,0,0,0,3000});
+
+    saveresult data1 casout='wineList' caslib = public replace; 
+
+    where = 'year GE ' || _args_.from || ' AND year LE ' || _args_.to ;
+    action table.fetch r = result /
+    table = {  caslib = 'casuser' name = 'wineList'
+    vars = _appEnv_._selections_
+    where=where },
+    ;
+
+    /* extract the data and return it as a dictionary */
+    casResults = resultsToDict(result.Fetch);
+
+
+    send_response({casResults=casResults});
+
+
+</pre>
+
+<h2> Step 2 - Graphql Schema changes</h2>
+<ul>
+    <li>Add a BeerProduction type in schema.graphql. Use WineProductionCas as a template</li>
+    <pre>
+    type BeerProduction {
+        """
+        An array containing beer production
+        """
+        beers: [BeerList]
+
+    }
+</pre>
+    <li> Add a BeerList type that mirrors WineList but with some British Beer names</li>
+    <pre>
+    type BeerList {
+        newcastle : Int
+        courage   : Int 
+        boltmaker : Int
+        boddington: Int
+        blakcsheep: Int
+    }
+</pre>
+</ul>
+
+<li> Update type Query with the following line </li>
+<pre>
+    beerProduction(from: Int, to: Int): BeerProduction
+
+</pre>
+
+<h2>Step 3 - Resolver</h2>
+<ul>
+    <li>create beerProduction.js that is a copy of wineProductionCas.js</li>
+
+    <pre>
+    'use strict';
+    let caslBase = require('../lib/caslBase');
+    let getSelections = require('../lib/getSelections');
+    
+    module.exports = async function beerProduction (_, args, context, info) {
+        let {store} = context;
+        
+        /* get the selection list from the AST and extened args with that information */
+        let selections = getSelections(info, 'beers', true, args);
+    
+        /* execute setup and execute sccasl action on CAS */
+        let result = await caslBase(store,['argsToTable.casl', 'resultsToDict.casl', 'beer.casl'], selections.args,selections._selections_);
+       
+        return result;
+    }
+
+</pre>
+
+</ul>
+<h2>Step 4: Modify index.js in the resolver directory</h2>
+
+<ul>
+    <li>Import your resolver</li>
+    <pre>
+            let beerProduction = require('./beerProduction'); 
+    </pre>
+
+    <li>Update Query with the root resolver</li>
+    <pre>
+        const Query = {
+            ...,
+            beerProduction: (parent, args,context,info) => beerProduction(parent, args, context, info)
+        }
+    </pre>
+    <li> Add beers resolver</li>
+    Note we are reusing the casResults.js resolver.
+
+    <pre>
+        const BeerProduction = {
+            beers: (parent,args, context, info)  => casResults (parent, args, context, info)
+            // Note: In the original blog casWines.js was used as the resolver.
+        }
+
+    </pre>
+
+    <li> Export BeerProduction</li>
+    <pre>
+
+    </pre>
+
+</ul>
+
+
+
+<h2> Testing the query</h2>
+<ul>
+
+    <li> restart the graphql-server</li>
+    <li> start graphql-app</li>
+    <li> Use the playground link to test the query.</li>
+</ul>

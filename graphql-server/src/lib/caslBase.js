@@ -60,9 +60,9 @@ module.exports = async function caslBase (store, srcFiles, args, env) {
        if (process.env.REUSECASSESSION === 'YES') {
           store.setAppData('casSession', session);
         } else {
-          await store.apiCall(session.links('delete'));
-          return result;
+          await store.apiCall(session.links('delete'));      
         }
+        return result;
     }
     catch (err) {
         let m = new UserInputError('Casl programming errors', {casError: JSON.stringify(err, null,4)});

@@ -34,4 +34,11 @@ action table.fetch r = result /
                vars = _appEnv_._selections_
                where=where },
             ;
-send_response(result);
+            
+/* extract the data and return it as a dictionary */
+casResults = resultsToDict(result.Fetch);
+
+
+/* next and prev are pagination place holders*/
+send_response({casResults=casResults});
+
