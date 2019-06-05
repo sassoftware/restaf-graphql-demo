@@ -68,7 +68,8 @@
       function setup() {
         let host = APPENV.host;
         debugger;
-        uiLibrary.wineApp(host, 'wineProduction', 'display');
+       //  uiLibrary.wineApp(host, 'wineProduction', 'display');
+       uiLibrary.display('WineAppp', {graphqlQuery: 'wineProduction', host: host}, document.getElementById('display'));
       }
 
     </script>

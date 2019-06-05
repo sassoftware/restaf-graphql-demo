@@ -109,7 +109,10 @@ function WineAppp(props) {
           setReportValues(res.report);
         }
       })
-      .catch(e => alert(JSON.stringify(e, null,4)));
+      .catch(e => {
+        console.log(JSON.stringify(e, null,4));
+        alert(JSON.stringify(e, null,4));
+      });
   };
 
   let show = (

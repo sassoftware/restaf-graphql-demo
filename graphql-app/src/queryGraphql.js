@@ -23,6 +23,7 @@ let axios = require('axios');
     debugger;
     let r = await axios(config);
     if (r.data.hasOwnProperty('errors') === true){
+      console.log(r.data.errors);
       throw r.data.errors;
     } else {
       console.log(r.data);

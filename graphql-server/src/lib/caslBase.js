@@ -57,17 +57,19 @@ module.exports = async function caslBase (store, srcFiles, args, env) {
     let session = await casSetup(store, null);
     try {
        let result  = await store.runAction(session, payload);
-       if (process.env.REUSECASSESSION === 'YES') {
-          store.setAppData('casSession', session);
-        } else {
-          await store.apiCall(session.links('delete'));      
-        }
-        return result;
+       await deleteSession(store,session);
+       return result;
     }
     catch (err) {
+        await deleteSession(store,session);
         let m = new UserInputError('Casl programming errors', {casError: JSON.stringify(err, null,4)});
         throw m;
     }
+}
+async function deleteSession(store, session) {
+    if (process.env.REUSECASSESSION !== 'YES') {
+        await store.apiCall(session.links('delete'));      
+      }
 }
 
 

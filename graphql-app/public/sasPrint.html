@@ -66,7 +66,8 @@
           .then(r => {
             document.getElementById('msg').innerHTML = '';
             debugger;
-            uiLibrary.displayODS(r, 'ODS');
+           //  uiLibrary.displayODS(r, 'ODS');
+           uiLibrary.display('DisplayODSp', {odsHTML: r}, document.getElementById('ODS'));
           })
           .catch(e => {
             console.log(e);

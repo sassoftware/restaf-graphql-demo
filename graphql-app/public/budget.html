@@ -65,7 +65,7 @@
         runScore()
           .then(r => {
             let t = [r];
-            uiLibrary.simpleTableFromJson(t, 'result');
+            uiLibrary.display('SimpleTableFromJsonp',{data: t}, document.getElementById('result'));
           })
           .catch(e => {
             debugger;

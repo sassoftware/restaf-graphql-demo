@@ -3,11 +3,8 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 'use strict';
-import wineApp from './wineApp';
-import displayODS from './displayODS';
-import simpleTableFromJson from './simpleTableFromJson';
-import queryGraphql from './queryGraphql';
+import display from './display';
 const Viewers = require('./viewers');
 
-export {wineApp, displayODS, simpleTableFromJson, queryGraphql, Viewers};
+export {display, Viewers};
 
