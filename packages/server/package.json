@@ -1,13 +1,12 @@
 {
   "name": "@restaf-graphql-server/server",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "description": "Useful demos of using graphql with SAS Viya",
   "main": "app.js",
   "scripts": {
     "start": "node app.js --env=app.env --appenv=appEnv.js",
     "debug": "node --inspect-brk app.js --env=app.env --appenv=appEnv.js"
   },
- 
   "repository": "https://github.com/sassoftware/restaf-graphql-demo/tree/master/packages/server",
   "keywords": [],
   "author": "Deva Kumar <deva.kumar@sas.com>",

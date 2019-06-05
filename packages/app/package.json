@@ -1,6 +1,6 @@
 {
   "name": "@restaf-graphql-demo/app",
-  "version": "1.0.0",
+  "version": "1.7.0",
   "description": "Useful demos of using graphql with SAS Viya",
   "scripts": {
     "start": "npx restaf-server --env=app.env --appenv=appEnv.js",
