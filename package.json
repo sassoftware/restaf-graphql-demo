@@ -11,5 +11,15 @@
     "restaf"
   ],
   "author": "Deva Kumar <deva.kumar@sas.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "lerna": "^3.14.1"
+  }
 }

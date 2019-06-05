@@ -19,7 +19,7 @@
     {2005,1,1,0,0,1000},
     {2006,0,0,0,0,3000});
 
-    saveresult data1 casout='wineList' caslib = public replace; 
+    saveresult data1 casout='wineList' caslib = 'casuser' replace; 
 
     where = 'year GE ' || _args_.from || ' AND year LE ' || _args_.to ;
     action table.fetch r = result /

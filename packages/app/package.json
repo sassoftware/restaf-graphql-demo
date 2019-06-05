@@ -1,5 +1,5 @@
 {
-  "name": "graphql-demo",
+  "name": "@restaf-graphql-demo/app",
   "version": "1.0.0",
   "description": "Useful demos of using graphql with SAS Viya",
   "scripts": {
@@ -7,7 +7,7 @@
     "debug": "npx restaf-server --env=app.env --appenv=appEnv.js",
     "build": "webpack --config=webpack.config.js"
   },
-  "repository": "https://github.com/sassoftware/restaf-graphql-demo",
+  "repository": "https://github.com/sassoftware/restaf-graphql-demo/tree/master/packages/app",
   "keywords": [],
   "author": "Deva Kumar <deva.kumar@sas.com>",
   "license": "Apache-2.0",
