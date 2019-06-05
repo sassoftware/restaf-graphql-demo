@@ -1,11 +1,46 @@
 <h1> Adding your own web Application</h1>
 
+<p>Note: Instructions are for 1.6.0 version</p>
 <blockquote>
     Any web application can call the graphlql server. So it is not necessary to follow the instructions below. The instructions 
-    here assume that you want to extend this repository
-    </blockquote>
+    here assume that you want to extend this repository by duplicating wineProductionCas as a template
+</blockquote>
 
-    <p>
-        In this document I will use wineProductionCas as the template to build from.
-    </p>
-<h2>Step 1: Build the viewer in the src directtory</h2>
+    
+<h2>Step 1: Build the viewer in the src/viewers directory</h2>
+
+<ul>
+    <li> Copy WineAppp.js to BeerAppp.js(Must be captilized as shown here)</li>
+    <li> Change the products and years arrays to your values. </li>
+    <li> Change all references to Wine(s), wine(s),   to Beer(s) and wine(s) in the file</li>
+    <li> Save file</li>
+    <li> On the console issue this command "npm run build" to build the uiLibrary bundle</li>
+</ul>
+
+<h2> Step 2: Build the beer.html in public directory</h2>
+<ul>
+<li>Copy winecas.html to beer.html</li>
+<li>Edit the call to uiLibrary(around line 72)</li>
+
+<pre>
+    uiLibrary.display('WineAppp', {graphqlQuery: 'wineProductionCas', host: host}, document.getElementById('display'));
+
+    TO:
+
+    uiLibrary.display('BeerAppp', {graphqlQuery: 'beerProduction', host: host}, document.getElementById('display'));
+</pre>
+
+The value of grapqhQuery (beerProduction) must match the root query you defined.
+
+</ul>
+
+<h2> Step 3: Add the app to public/index.html </h2>
+
+Add this line to the list as follows:
+<pre>
+&ltli&gt &lta href="javascript:show('/beer.html')"  target="_blank" &gt Beer Production &lt/a&gt&lt/li&gt
+</pre>
+
+<h2> Step 4</h2>
+
+Launch the apps as usual. You should be able to run the beer app now.

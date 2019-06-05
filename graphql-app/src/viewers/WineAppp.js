@@ -103,7 +103,6 @@ function WineAppp(props) {
       .then(r => {
         debugger;
         let res = r;
-        console.log(res);
         setResultValues(res.wines);
         if (res.report != null) {
           setReportValues(res.report);
