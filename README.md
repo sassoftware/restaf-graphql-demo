@@ -2,9 +2,9 @@
 
 This repository has two projects
 
-1. graphql-server - This the app where you specify your schema and resolvers and start the graphql server.
+1. server - This the app where you specify your schema and resolvers and start the graphql server.
 
-2. graphql-app - This is a collection of web apps demonstrating the UI for the sample graphql queries. This assumes that you have done step 1.
+2. app - This is a collection of web apps demonstrating the UI for the sample graphql queries. This assumes that you have done step 1.
 
 ---
 
@@ -19,20 +19,40 @@ This repository has two projects
     - ClientSecret = secret
     - redirect = <http://localhost:5000/graphqlserver>
 
-2. npm install the dependencies, configure
+2. Install the dependencies and configure
 
-    - open a terminal/shell window
-    - cd graphql-server
-    - npm install
-    - edit app.env and set the value of VIYA_SERVER to point to your Viya Server
+    - Using yarn
+        - Issue the command below in the root directory
 
-    - open a terminal/shell window
-    - cd graphql-app
-    - npm install
+    ```shell
+        yarn install
+    ```
 
-3. Starting the apps
+    - Using npm
+        - open a terminal/shell window
+        - cd packages/server
+        - npm install
+        - edit app.env and set the value of VIYA_SERVER to point to your Viya Server
 
-    - In each of the open shells enter npm start
+        - open a terminal/shell window
+        - cd app
+        - npm install
+
+3. Starting the server
+
+    - Open  a shell/terminal and issue this command
+
+     ```shell
+     npm run server
+     ```
+
+    - Open a second shell/terminak and issue this command
+
+    ```shell
+    npm run app
+
+    ```
+
     - Visit the url indicated in the graphql-app shell.
     - You will be prompted for userid and password.
     - Once authenticated you should be shown the app.

@@ -21,5 +21,9 @@
   "main": "index.js",
   "devDependencies": {
     "lerna": "^3.14.1"
+  },
+  "scripts": {
+    "app": "cd ./packages/app && npm start",
+    "server": "cd ./packages/server && npm start"
   }
 }
