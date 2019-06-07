@@ -33,7 +33,7 @@ ENV APPHOST=0.0.0.0
 ENV APPPORT=8080
 
 # SAS_SSL_ENABLED=NO
-ENV VIYA_SERVER=http://d204.secdb.sashq-d.openstack.sas.com
+ENV VIYA_SERVER=http://viyaserver.com
 
 
 #
