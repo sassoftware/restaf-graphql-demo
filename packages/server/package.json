@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js --env=app.env --appenv=appEnv.js",
+    "indocker": "node app.js --appenv=appEnv.js",
     "debug": "node --inspect-brk app.js --env=app.env --appenv=appEnv.js"
   },
   "repository": "https://github.com/sassoftware/restaf-graphql-demo/tree/master/packages/server",

@@ -4,7 +4,7 @@
 */
 'use strict';
 
-let getSasTableRows = require('../lib/getSASTableRows');
+let getSasTableRows = require('../lib/getSasTableRows');
 // eslint-disable-next-line no-unused-vars
 module.exports = async function wines (parent, args, context){
     let {store} = context;

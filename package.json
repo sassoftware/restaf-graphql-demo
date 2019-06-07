@@ -24,6 +24,10 @@
   },
   "scripts": {
     "app": "cd ./packages/app && npm start",
-    "server": "cd ./packages/server && npm start"
+    "server": "cd ./packages/server && npm start",
+    "buildserver": "cd ./packages/server && docker build -f Dockerfile -t server .",
+    "buildapp": "cd ./packages/app && docker build -f Dockerfile -t app .",
+    "runserver": "docker run -p 5000:8080 -t server",
+    "runapp": "docker run -p 3000:8080 -t app"
   }
 }

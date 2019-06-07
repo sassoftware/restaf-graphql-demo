@@ -57,3 +57,29 @@ This repository has two projects
     - You will be prompted for userid and password.
     - Once authenticated you should be shown the app.
     - Visit each of the links to see the demo in action.
+
+---
+
+## Docker
+
+To deploy in docker run the following commands
+
+```script
+npm run buildserver
+
+npm run buildapp
+```
+
+Follow these by issuing the following commands in seperate shells
+
+```script
+npm run runserver
+
+npm run runapp
+```
+
+Now access the application by visiting this site
+
+```js
+http://localhost:3000/graphqlapp
+```

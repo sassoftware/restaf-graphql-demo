@@ -4,6 +4,7 @@
   "description": "Useful demos of using graphql with SAS Viya",
   "scripts": {
     "start": "npx restaf-server --env=app.env --appenv=appEnv.js",
+    "indocker": "npx restaf-server --appenv=appEnv.js",
     "debug": "npx restaf-server --env=app.env --appenv=appEnv.js",
     "build": "webpack --config=webpack.config.js"
   },

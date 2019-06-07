@@ -2,7 +2,10 @@
 
 ## next
 
-1. Switch to using Lerna
+## version 1.7.2
+
+- Fixed case issue refereencing in require (showed up when running in Docker)
+- Added Docker files in the packages.
 
 ## Version 1.7.0
 
