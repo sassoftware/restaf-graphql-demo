@@ -64,23 +64,21 @@ The basic flow is as follows:
 
 The query is
 
-```javascript
-wineProduction(from:2001, to:2004){
-    wines {
-      year
-      merlot
-    }
-}
-
-
+```sql
+  wineProduction(from:2001, to:2004){
+      wines {
+        year
+        merlot
+      }
+  }
 ```
 
 Compute server will receive the following:
 
 ```sas
-%let from=2001;
-%let to=2004;
-%let _selections_= year merlot;
+  %let from=2001;
+  %let to=2004;
+  %let _selections_= year merlot;
 ```
 
 Cas action sccasl.runcasl will receive the following:
@@ -154,7 +152,7 @@ resolved when restaf-graphql-server is installed.
 ---
 
 ```script
-npm start
+  npm start
 ```
 
 ## Application
@@ -162,7 +160,7 @@ npm start
 In your browser enter
 
 ```script
-http://localhost:5000/graphqlapp
+  http://localhost:5000/graphqlapp
 
 ```
 
@@ -228,21 +226,21 @@ selections.
 Consider this query
 
 ```sql
-wineProduction(from: 2001 to:2004) {
-    wines{
-        merlot
-        twobit
-    }
-}
+  wineProduction(from: 2001 to:2004) {
+      wines{
+          merlot
+          twobit
+      }
+  }
 
 ```
 
 The generated macros are:
 
 ```sas
-%let from=2001;
-%let to=2004;
-%let _selections_ = merlot twobit;
+  %let from=2001;
+  %let to=2004;
+  %let _selections_ = merlot twobit;
 ```
 
 ## Passing arguments to a CASL Program

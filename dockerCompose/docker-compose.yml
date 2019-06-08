@@ -1,0 +1,13 @@
+graphqlserver:
+    image: docker.sas.com/kumar/graphqlserver:latest
+    restart: always
+    ports:
+      - 5000:8080
+    env_file:
+      - ./graphqlserver.env
+graphqlapp:
+    image: docker.sas.com/kumar/graphqlapp:latest
+    restart: always
+    ports:
+      - 3000:8080
+    
