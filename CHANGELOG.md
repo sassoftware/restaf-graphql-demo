@@ -2,6 +2,11 @@
 
 ## next
 
+## version 1.7.3
+
+- Added .env file in packages/server for the docker run command
+- Added a docker-compose template
+
 ## version 1.7.2
 
 - Fixed case issue refereencing in require (showed up when running in Docker)

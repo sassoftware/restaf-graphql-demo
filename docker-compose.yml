@@ -1,0 +1,17 @@
+graphqlserver:
+    image: dockerrepo/graphqlserver:latest
+    restart: always
+    ports:
+      - 5000:8080
+    environment:
+      - VIYA_SERVER=yourviyaserver
+      - CLIENTID=graphqlserverdemo
+      - CLIENTSECRET=secret
+graphqlapp:
+    image: dockerrepo/graphqlapp:latest
+    restart: always
+    ports:
+      - 3000:8080
+    environment:
+      - GRAPHQLSERVER=http://localhost:5000
+      - GRAPHQLLOGON=http://localhost:5000/graphqlserver
