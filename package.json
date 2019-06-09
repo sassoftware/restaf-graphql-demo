@@ -1,6 +1,6 @@
 {
   "name": "restaf-graphql-demo",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "Demo of using graphql for SAS Viya Applications",
   "repository": "https://github.com/sassoftware/restaf-graphql-demo",
   "keywords": [
