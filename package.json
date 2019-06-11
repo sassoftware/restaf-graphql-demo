@@ -1,6 +1,6 @@
 {
   "name": "restaf-graphql-demo",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "Demo of using graphql for SAS Viya Applications",
   "repository": "https://github.com/sassoftware/restaf-graphql-demo",
   "keywords": [
@@ -13,9 +13,9 @@
   "author": "Deva Kumar <deva.kumar@sas.com>",
   "license": "Apache-2.0",
   "private": true,
-  "workspaces":  [
-      "packages/*"
-    ],
+  "workspaces": [
+    "packages/*"
+  ],
   "main": "index.js",
   "devDependencies": {
     "lerna": "^3.14.1"
