@@ -10,6 +10,21 @@ This repository has two projects
 
 ## Setting up this demo
 
+
+### Requirements
+
+- If you have not installed yarn already install yarn globally
+
+```shell
+npm install yarn -g
+```
+
+- Issue this command to make sure that yarn workspaces are enabled
+
+```shell
+yarn config set workspaces-experimental true
+```
+
 ---
 
 ## Quick Start
@@ -19,26 +34,23 @@ This repository has two projects
     - ClientSecret = secret
     - redirect = <http://localhost:5000/graphqlserver>
 
-2. Install the dependencies and configure
-
-    - Using yarn
-        - Issue the command below in the root directory
+2. Install the dependencies
 
     ```shell
         yarn install
     ```
 
-    - Using npm
-        - open a terminal/shell window
-        - cd packages/server
-        - npm install
-        - edit app.env and set the value of VIYA_SERVER to point to your Viya Server
+3. Run-time configuration
 
-        - open a terminal/shell window
-        - cd app
-        - npm install
+    - You have two options to set the value of VIYA_SERVER
+        1. Edit packages/server/app.env and set the value of VIYA_SERVER
+        2. Set the environment variable in your shell(preferred way)
 
-3. Starting the server
+        ```shell
+             set VIYA_SERVER=...your Viya server...
+        ```
+
+4. Starting the server
 
     - Open  a shell/terminal and issue this command
 
@@ -60,7 +72,11 @@ This repository has two projects
 
 ---
 
-## Docker
+## Build and Run in Docker
+
+```txt
+    Edit dockerrun.env and set the value of VIYA_SERVER. This file is used to set runtime environment variables for graphqlserver
+```
 
 To deploy in docker run the following commands
 
@@ -83,3 +99,9 @@ Now access the application by visiting this site
 ```js
 http://localhost:3000/graphqlapp
 ```
+
+---
+
+## Docker-compose
+
+A sample docker-compose.yml is provided in the root directory. Make sure you set the VIYA_SERVER to the proper value.

@@ -7332,10 +7332,31 @@ resolve@^1.1.6, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.3.2, resolve@^1.8.1
   dependencies:
     path-parse "^1.0.6"
 
-restaf-graphql-server@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/restaf-graphql-server/-/restaf-graphql-server-1.3.0.tgz#042e40d703a5837bfbfb8b62c486fed3e66417ed"
-  integrity sha512-g9fYuVBvivz57k0D1iGW8qvuw+DjovAurnjmJoFtU6JWuVUQvieOxlsNi43WtoV44hoGRdP90eREtOL9s3g7iA==
+restaf-graphql-server@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/restaf-graphql-server/-/restaf-graphql-server-1.3.1.tgz#4c171b1de42c984b8c640e409ee47a18e8913f8f"
+  integrity sha512-MIbMlPvyW52z3yH5UHlhPGQpPo354jQk233+wDSSv8UPA0iIe2XH6xSyIVQHMWZpoBmn4bzHW7ldMq3U0RaPbw==
+  dependencies:
+    "@hapi/bell" "^10.1.0"
+    "@hapi/cookie" "^10.1.0"
+    "@hapi/good" "^8.2.0"
+    "@hapi/hapi" "^18.3.1"
+    "@hapi/inert" "^5.2.0"
+    apollo-server-hapi "^2.5.0"
+    babel-polyfill "^6.26.0"
+    debug "^4.1.1"
+    graphql "^14.1.1"
+    hapi-server-session "^4.3.1"
+    node-cache-promise "^1.0.0"
+    restaf "^1.5.3"
+    uuid "^3.3.2"
+    yar "^9.1.0"
+    yargs "^13.2.2"
+
+restaf-graphql-server@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/restaf-graphql-server/-/restaf-graphql-server-1.4.0.tgz#9d225fa8d536255e315a3df8b2298f613c777d76"
+  integrity sha512-TyaQdlfdgGettGot4iPwhWAyCaNhpxVRSzNSYAWQebmzSZd20HgUCvSHolitDXVYdK+Xz0rqK/U/XPMKeFi2Ag==
   dependencies:
     "@hapi/bell" "^10.1.0"
     "@hapi/cookie" "^10.1.0"

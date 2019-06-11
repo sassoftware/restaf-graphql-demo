@@ -13,7 +13,7 @@
   "author": "Deva Kumar <deva.kumar@sas.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "restaf-graphql-server": "^1.3.0"
+    "restaf-graphql-server": "^1.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

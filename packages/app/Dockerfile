@@ -1,4 +1,4 @@
-FROM node:11.4.0
+FROM node:12.4.0-alpine
 LABEL maintainer="deva.kumar@sas.com"
 WORKDIR /usr/src/app
 COPY package*.json ./

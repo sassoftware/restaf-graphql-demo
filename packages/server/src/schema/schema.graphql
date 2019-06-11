@@ -5,6 +5,7 @@
 
 const { gql } = require('apollo-server-hapi');
 const typeDefs = gql`
+   
 
     type Report {  
         """
@@ -54,7 +55,7 @@ const typeDefs = gql`
 
     type Budget {
         whitechocolate: Float
-        darkchocolate : Float
+        darkchocolate: Float
     }
 
 
@@ -62,7 +63,7 @@ const typeDefs = gql`
         """
         An array containing wine production
         """
-        wines : [WineList]
+        wines: [WineList]
 
         """
         ODS output 

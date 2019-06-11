@@ -1,4 +1,4 @@
-FROM node:11.4.0
+FROM node:12.4.0-alpine
 LABEL maintainer="deva.kumar@sas.com"
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -33,7 +33,7 @@ ENV APPHOST=0.0.0.0
 ENV APPPORT=8080
 
 # SAS_SSL_ENABLED=NO
-ENV VIYA_SERVER=http://viyaserver
+ENV VIYA_SERVER=
 
 
 #
