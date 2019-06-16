@@ -31,6 +31,7 @@ plugins.push( new webpack.DefinePlugin( {
 
 module.exports = {
   entry: ["./src/index.js"],
+  mode: "development",
 
   output: {
     path         : path.resolve(__dirname, "public/shared"),
@@ -39,11 +40,13 @@ module.exports = {
     libraryTarget: "umd"
   },
 
+
   externals: {
-    react      : "React",
+    "react"    : "React",
     "react-dom": "ReactDOM",
     "axios"    : "axios"
   },
+  
 
   module: {
     rules: [

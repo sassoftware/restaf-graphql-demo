@@ -5,7 +5,7 @@
 
 let axios = require('axios');
 
- module.exports = async function queryGraphql(host, graphqlQuery, filter){
+ module.exports = async function queryGraphql(host, graphqlQuery, filter,resultcb, errorcb){
     let data = {
         query: graphqlQuery
       }
@@ -23,10 +23,14 @@ let axios = require('axios');
     debugger;
     let r = await axios(config);
     if (r.data.hasOwnProperty('errors') === true){
-      console.log(r.data.errors);
-      throw r.data.errors;
+      if ( errorcb != null) {
+        errorcb(r.data.errors, null,4);
+      }
+      throw JSON.stringify(r.data.errors);
     } else {
-      console.log(r.data);
+      if (resultcb != null) {
+        resultcb(r.data.data.results);
+      }
       return r.data.data.results;
     }
  }

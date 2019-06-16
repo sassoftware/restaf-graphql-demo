@@ -4,21 +4,19 @@
 */
 
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
-function SimpleTableFromJsonp(props) {
-    let {data} = props;
-    // set column headers 
-    let columns = Object.keys(data[0]);
-    debugger;
-   
-    let theadcols = columns.map(c => <th key={c} scope="col">{c}</th>);
+import React from "react";
+
+function TableBrowser(props) {
+
+    let {columns, rows} = props.data;
+
+    let theadcols = columns.map(c => <th key={c.name} scope="col">{c.name}</th>);
     let thead = <thead><tr>{theadcols}</tr></thead>;
 
-    let trows = data.map((dataRow, rowno) => {
-        let rone = [];
-        for (let key in dataRow){
-            rone.push(<td key={key}>{dataRow[key]}</td>)
-        }
+    let trows = rows.map((dataRow, rowno) => {
+        let rone = dataRow.map((r,i) => {
+            return <td key={rowno+i}>{r}</td>
+        })
         return <tr key={rowno}>{rone}</tr>
     })
     let tbody = <tbody>{trows}</tbody>
@@ -33,5 +31,5 @@ function SimpleTableFromJsonp(props) {
                 </div>;
     return table;
 }
-export default SimpleTableFromJsonp;
+export default TableBrowser;
 

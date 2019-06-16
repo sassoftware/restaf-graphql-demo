@@ -15,7 +15,8 @@ let input = {
     NINQ   : 1,
     YOJ    : 10,
     LOAN   : 1000,
-    ASSET  : 100000
+    ASSET  : 100000,
+    x      : true
 };
 
 let _args_ = jsonToDict(input, '_args_');

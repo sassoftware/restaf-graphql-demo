@@ -6,81 +6,106 @@
 ~ */
 -->
 <html>
-
   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-  
-      
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js"></script>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/emotion@9.2.12/dist/emotion.umd.min.js"></script>
-      <script src="https://unpkg.com/react-input-autosize@2.2.1/dist/react-input-autosize.min.js"></script>
-      <!--script src="https://cdnjs.cloudflare.com/ajax/libs/react-select/2.4.3/react-select.js"></script>-->
-  
-      <!--script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"></script-->
-      <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous"
-        />
-  
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  
-      <!--script type="text/babel" src="/shared/components/allComponents.js"></script> -->
-      <script src="/shared/uiLibrary.js"></script>
-      <script src="/appenv"></script>
-  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emotion@9.2.12/dist/emotion.umd.min.js"></script>
+    <script src="https://unpkg.com/react-input-autosize@2.2.1/dist/react-input-autosize.min.js"></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/react-select/2.4.3/react-select.js"></script>-->
+
+    <!--script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"></script-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!--script type="text/babel" src="/shared/components/allComponents.js"></script> -->
+    <script src="/shared/uiLibrary.js"></script>
+    <script src="/appenv"></script>
 
     <style>
-        .h1 {
-          background-color: "blue";
-          color: '#fff';
-          padding: '10px';
-        }
-        .th {
-          text-align: center;
-        }
-        .button {
-          background-color: DodgerBlue;
-          /* Blue background */
-          border: none;
-          /* Remove borders */
-          color: white;
-          /* White text */
-          padding: 12px 16px;
-          /* Some padding */
-          font-size: 16px;
-          /* Set a font size */
-          cursor: pointer;
-          /* Mouse pointer on hover */
-        };
-      </style>
-     
-      <script>
-      function setup() {
-        let host = APPENV.host;
-        debugger;
-       //  uiLibrary.wineApp(host, 'wineProduction', 'display');
-       uiLibrary.display('WineAppp', {graphqlQuery: 'wineProduction', host: host}, document.getElementById('display'));
+      .h1 {
+        background-color: "blue";
+        color: "#fff";
+        padding: "10px";
       }
+      .th {
+        text-align: center;
+      }
+      .button {
+        background-color: DodgerBlue;
+        /* Blue background */
+        border: none;
+        /* Remove borders */
+        color: white;
+        /* White text */
+        padding: 12px 16px;
+        /* Some padding */
+        font-size: 16px;
+        /* Set a font size */
+        cursor: pointer;
+        /* Mouse pointer on hover */
+      }
+    </style>
 
+    <script>
+      function setup() {
+   
+        const products = [
+          { value: "year", label: "Year" },
+          { value: "merlot", label: "Merlot" },
+          { value: "chardonnay", label: "Chardonnay" },
+          { value: "cabernet", label: "Cabernet Sauvignon" },
+          { value: "pinot", label: "Pinot Noir" },
+          { value: "twobit", label: "Twobit Jack" }
+        ];
+
+        const years = [
+          { value: 2000, label: "2000" },
+          { value: 2001, label: "2001" },
+          { value: 2002, label: "2002" },
+          { value: 2003, label: "2003" },
+          { value: 2004, label: "2004" },
+          { value: 2005, label: "2005" },
+          { value: 2006, label: "2006" }
+        ];
+      
+        uiLibrary.display(
+          "WineAppp",
+          {
+            graphqlQuery: "wineProduction",
+            host: APPENV.host,
+            products: products,
+            years: years,
+            report: true,
+
+            productType  : 'wines',
+            productTitle: "Wine Production"
+          },
+          document.getElementById("display")
+        );
+      }
     </script>
-
-
   </head>
 
   <body onload="setup()">
-      <h1 class="h1"> Wine Production using Compute Service</h1>
-        <div id="display">
-         </div>
+    <h1 class="h1">Wine Production using Compute Service</h1>
+    <div id="display"></div>
   </body>
-
 </html>

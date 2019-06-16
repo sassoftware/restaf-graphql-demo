@@ -1,3 +1,7 @@
+/*   
+* Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.   
+* SPDX-License-Identifier: Apache-2.0   
+*/
 import React from "react";
 import SimpleTableFromJsonp from "./SimpleTableFromJsonp";
 import DisplayODSp from "./DisplayODSp";
@@ -6,45 +10,32 @@ import queryGraphql from "../queryGraphql";
 
 function WineAppp(props) {
   const { useState } = React;
-  let [selections, setSelections] = useState(null);
+  let [selections, setSelections]           = useState(null);
   let [reportSelection, setReportSelection] = useState(null);
-  let [fromYear, setFromYearSelection] = useState(null);
-  let [toYear, setToYearSelection] = useState(null);
-  let [resultValues, setResultValues] = useState(null);
-  let [reportValues, setReportValues] = useState(null);
-  let [graphqlQuery] = useState(props.graphqlQuery);
+  let [fromYear, setFromYearSelection]      = useState(null);
+  let [toYear, setToYearSelection]          = useState(null);
+  let [resultValues, setResultValues]       = useState(null);
+  let [reportValues, setReportValues]       = useState(null);
+  let [graphqlQuery]                        = useState(props.graphqlQuery);
+  let [products]                            = useState(props.products);
+  let [showReport]                          = useState(props.report);
+  let [years]                               = useState(props.years);
+  let [productType]                         = useState(props.productType);
+  let [productTitle]                        = useState(props.productTitle);
+  let [errors, setError]                    = useState(null);
 
   let { host } = props;
-
-  //
-  // TBD:
-  //    Get all the hard-coded product values from the server using graphql
-  //    and make the calls using useEffect
-  //
-
-  const products = [
-    { value: "year", label: "Year" },
-    { value: "merlot", label: "Merlot" },
-    { value: "chardonnay", label: "Chardonnay" },
-    { value: "cabernet", label: "Cabernet Sauvignon" },
-    { value: "pinot", label: "Pinot Noir" },
-    { value: "twobit", label: "Twobit Jack" }
-  ];
 
   const report = [
     { value: "ods", label: "ODS" },
     { value: "log", label: "Log" }
   ];
 
-  const years = [
-    { value: 2000, label: "2000" },
-    { value: 2001, label: "2001" },
-    { value: 2002, label: "2002" },
-    { value: 2003, label: "2003" },
-    { value: 2004, label: "2004" },
-    { value: 2005, label: "2005" },
-    { value: 2006, label: "2006" }
-  ];
+  //
+  // TBD:
+  //    Get all the hard-coded product values from the server using graphql
+  //    and make the calls using useEffect
+  //
 
   const _onSelection = selectedValues => {
     setSelections(selectedValues.length > 0 ? selectedValues : null);
@@ -82,9 +73,16 @@ function WineAppp(props) {
       rvars = rvars + " }";
     }
 
+    const resultcb = (r) => {
+      setResultValues(r[productType]);
+      if (r.report != null) {
+        setReportValues(r.report);
+      }
+    }
+
     let gqString = `query ${graphqlQuery}($from: Int, $to: Int){
           results: ${graphqlQuery}(from: $from, to: $to) {
-            wines {
+            ${productType} {
                 ${qvars} 
               } 
               ${rvars}
@@ -99,19 +97,8 @@ function WineAppp(props) {
     setReportValues(null);
     setResultValues(null);
     debugger;
-    queryGraphql(host, gqString, filter)
-      .then(r => {
-        debugger;
-        let res = r;
-        setResultValues(res.wines);
-        if (res.report != null) {
-          setReportValues(res.report);
-        }
-      })
-      .catch(e => {
-        console.log(JSON.stringify(e, null,4));
-        alert(JSON.stringify(e, null,4));
-      });
+    queryGraphql(host, gqString, filter, resultcb, setError);
+
   };
 
   let show = (
@@ -137,7 +124,7 @@ function WineAppp(props) {
             />
           </div>
           <div className="form-group">
-            <small id="helpsel"> Wine Selections</small>
+            <small id="helpsel"> {productTitle}</small>
             <Select
               value={selections}
               isMulti={true}
@@ -147,7 +134,7 @@ function WineAppp(props) {
               isOpen={true}
             />
           </div>
-          {graphqlQuery === "wineProduction" ? (
+          {showReport === true ? (
             <div className="form-group">
               <small id="repsel"> Report Options</small>
               <Select
@@ -167,6 +154,7 @@ function WineAppp(props) {
         Submit
       </button>
       <br />
+      {errors}
       <div>
         {resultValues !== null ? (
           <SimpleTableFromJsonp data={resultValues} />

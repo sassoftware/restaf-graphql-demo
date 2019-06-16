@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+/*
+* Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+* SPDX-License-Identifier: Apache-2.0
+*/
+-->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.development.js"></script>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="/shared/uiLibrary.js"></script>
+    <script src="/appenv"></script>
+    <style>
+      .h1 {
+        background: "blue";
+        color: '#fff';
+        padding: '10px';
+      }
+
+      ;
+
+      .button {
+        background-color: DodgerBlue;
+        /* Blue background */
+        border: none;
+        /* Remove borders */
+        color: white;
+        /* White text */
+        padding: 12px 16px;
+        /* Some padding */
+        font-size: 16px;
+        /* Set a font size */
+        cursor: pointer;
+        /* Mouse pointer on hover */
+      }
+
+      ;
+    </style>
+
+
+    <script>
+    
+      function onSubmit() {
+        let table = document.getElementById('TABLE').value;
+        debugger;
+        uiLibrary.display('CasTableBrowserp', {table: table,  host: APPENV.host, from: 1, count: 20, format: true}, document.getElementById('display'));
+       }
+
+    </script>
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <h1 class="h1"> Browse Cas Table</h1>
+      <div class="content-form">
+        <form action="">
+          <div class="form-group">
+            <input class="form-control" id="TABLE" placeholder="Enter caslib.tableName">
+          </div>
+
+        </form>
+        <button class="btn btn-primary" onclick="onSubmit()">Submit</button>
+        <br><br>
+      </div>
+      <div id="display"> </div>
+    </div>
+
+
+  </body>
+
+</html>

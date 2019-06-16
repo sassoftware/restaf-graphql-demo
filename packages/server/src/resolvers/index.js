@@ -18,7 +18,14 @@
  let wineProduction = require('./wineProduction');  
  let wines          = require('./wines');
  let casResults     = require('./casResults');
+ let browseCasTable = require('./browseCasTable');
+ /*
+ let casColumns     = require('./casColumns');
+ let casRows        = require('./casRows');
+ let casPagination  = require('./casPagination');
+ */
 
+ const GraphQLJSON = require('graphql-type-json');
 
   // let winesCas       = require('./winesCas');
 
@@ -37,7 +44,9 @@ const Query = {
     budget        : (parent, args, context, info) => budget (parent, args, context, info),
     wineProduction: (parent, args, context, info) => wineProduction (parent, args, context, info),
 
-    wineProductionCas: (parent, args, context, info) => wineProductionCas (parent, args, context, info)
+    wineProductionCas: (parent, args, context, info) => wineProductionCas (parent, args, context, info),
+
+    browseCasTable: (parent, args, content, info) => browseCasTable(parent, args, content, info)
 }
 
 const ReportView = {
@@ -60,5 +69,19 @@ const WineProductionCas = {
     wines: (parent,args, context, info)  => casResults (parent, args, context, info)
     // Note: In the original blog winesCas.js was used as the resolver.
 }
+
+/*
+const CasTable = {
+    allData:  GraphQLJSON
+}
+
+const CasTable = {
+    columns   : (parent, args, context, info) => casColumns(parent, args, context, info),
+    rows      : (parent, args, context, info) => casRows(parent, args, context, info),
+    pagination: (parent, args, context, info) => casPagination(parent, args, context, info)
+
+}
+*/
+
 module.exports = {Query, ReportView, SASResults, WineProduction, WineProductionCas};
  

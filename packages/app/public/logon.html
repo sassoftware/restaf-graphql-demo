@@ -27,9 +27,7 @@
     <script>
         function logon() {
             debugger;
-            console.log(APPENV);
-            let url = `${APPENV.logon}?next=${window.location.origin}/redirect.html`;
-            console.log(url);
+            let url = `${APPENV.logon}?next=${window.location.origin}/redirect.html`;   
             window.location.replace(url);
         }
             

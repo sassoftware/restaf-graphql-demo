@@ -10,7 +10,6 @@ This repository has two projects
 
 ## Setting up this demo
 
-
 ### Requirements
 
 - If you have not installed yarn already install yarn globally
@@ -27,48 +26,64 @@ yarn config set workspaces-experimental true
 
 ---
 
+## Clone the repository
+
+```shell
+git clone https://github.com/sassoftware/restaf-graphql-demo
+```
+
 ## Quick Start
 
-1. Obtain a clientID and clientSecret for the authorization_code flow:
+cd to the root directory of the project.
+
+1; Obtain a clientID and clientSecret for the authorization_code flow:
     - ClientId = graphqlserver
     - ClientSecret = secret
     - redirect = <http://localhost:5000/graphqlserver>
 
-2. Install the dependencies
+For your convenience a shell script is included in this repository. ssh to the Viya server as an admin and run this script. Feel free to change the default clientid and clientsecret.
+
+```shell
+sudo sh regclient.sh  -f authorization_code -c graphqlserver  -s secret -r htttp://localhost:5000/graphqlserver
+```
+
+2;  Install the dependencies
+
+```shell
+    yarn install
+```
+
+3; Run-time configuration
+
+- You have two options to set the value of VIYA_SERVER. clientid and clientsecret
+    1. Edit packages/server/app.env and set the value of VIYA_SERVER
+    2. Set the environment variable in your shell(preferred way)
 
     ```shell
-        yarn install
+            set VIYA_SERVER=...your Viya server...
+            set CLIENTID=...your client...
+            set CLIENTSECRET=...uour clientsecret...
     ```
 
-3. Run-time configuration
+4; Starting the server
 
-    - You have two options to set the value of VIYA_SERVER
-        1. Edit packages/server/app.env and set the value of VIYA_SERVER
-        2. Set the environment variable in your shell(preferred way)
-
-        ```shell
-             set VIYA_SERVER=...your Viya server...
-        ```
-
-4. Starting the server
-
-    - Open  a shell/terminal and issue this command
-
-     ```shell
-     npm run server
-     ```
-
-    - Open a second shell/terminak and issue this command
+- Open  a shell/terminal and issue this command
 
     ```shell
-    npm run app
-
+    npm run server
     ```
 
-    - Visit the url indicated in the graphql-app shell.
-    - You will be prompted for userid and password.
-    - Once authenticated you should be shown the app.
-    - Visit each of the links to see the demo in action.
+- Open a second shell/terminak and issue this command
+
+```shell
+npm run app
+
+```
+
+- Visit the url indicated in the graphql-app shell.
+- You will be prompted for userid and password.
+- Once authenticated you should be shown the app.
+- Visit each of the links to see the demo in action.
 
 ---
 

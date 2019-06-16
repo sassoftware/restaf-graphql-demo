@@ -19,9 +19,8 @@
       method: 'POST',
       data: data
     }
-    console.log(config);
+    
     let r = await axios(config);
-    console.log(r.data);
     if ( r.data.hasOwnProperty('errors') === true){
       throw r.data.errors;
     } else {

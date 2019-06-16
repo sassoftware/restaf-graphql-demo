@@ -4,8 +4,10 @@
 */
 
 const { gql } = require('apollo-server-hapi');
+
 const typeDefs = gql`
    
+    scalar JSON   
 
     type Report {  
         """
@@ -83,6 +85,9 @@ const typeDefs = gql`
     type WineProductionCas {
         wines : [WineList]
     }
+
+
+
     type Query {
         test   : String
 
@@ -125,8 +130,16 @@ const typeDefs = gql`
 
         wineProductionCas(from: Int, to: Int): WineProductionCas
 
-
+        browseCasTable(table: String from: Int, count: Int, format: Boolean): JSON
     }
 
 `;
 module.exports = typeDefs;
+/*
+
+    type CasTable {
+        allData: JSON
+        columns: JSON
+        rows   : JSON
+    }
+    */
