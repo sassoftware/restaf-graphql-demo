@@ -49,14 +49,15 @@ sudo sh regclient.sh  -f authorization_code -c graphqlserver  -s secret -r htttp
 
 2;  Install the dependencies
 
+ cd to the root directory
 ```shell
     yarn install
 ```
 
 3; Run-time configuration
 
-- You have two options to set the value of VIYA_SERVER. clientid and clientsecret
-    1. Edit packages/server/app.env and set the value of VIYA_SERVER
+- You have two options to set the value of VIYA_SERVER. CLIENTID and CLIENTSECRET
+    1. Edit packages/server/app.env and set the value of VIYA_SERVER, CLIENTID, CLIENTSECRET
     2. Set the environment variable in your shell(preferred way)
 
     ```shell
@@ -90,7 +91,7 @@ npm run app
 ## Build and Run in Docker
 
 ```txt
-    Edit dockerrun.env and set the value of VIYA_SERVER. This file is used to set runtime environment variables for graphqlserver
+    Edit dockerrun.env and  set runtime environment variables VIYA_SERVER, CLIENTID, CLIENTSECRET
 ```
 
 To deploy in docker run the following commands
@@ -119,4 +120,10 @@ http://localhost:3000/graphqlapp
 
 ## Docker-compose
 
-A sample docker-compose.yml is provided in the root directory. Make sure you set the VIYA_SERVER to the proper value.
+A sample docker-compose.yml is provided in the root directory. Make sure you set the VIYA_SERVER, CLIENTID and CLIENTSECRET to the proper value.
+
+---
+
+## Notes
+
+You can change the ports used in this app. Make sure you change all the occurrences of that port.
