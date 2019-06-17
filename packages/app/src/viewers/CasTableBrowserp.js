@@ -42,20 +42,22 @@ function CasTableBrowserp(props) {
             setResult(r);
         }
        
+        const handleError = (err) => {
+            setError(err);
+            setResult(null);
+
+        }
         setError(null);
         debugger;
-        queryGraphql(host, gqString, filter, handleResult, setError);
+        queryGraphql(host, gqString, filter, handleResult, handleError);
         
-    })
+    }, [from]);
 
     const _onScroll = (direction) => {
         let f = (direction === 'up') ? result.pagination.prev : result.pagination.next;
         setFrom(f);
         setCount(result.pagination.count);
     }
-
-    console.log(upDisabled);
-    console.log(downDisabled);
 
    let show = (
        <div className="container">
@@ -74,6 +76,7 @@ function CasTableBrowserp(props) {
                                <TableBrowser data={result} />
                            ) : null}
                        </div>
+
                    </div>
                </div>
            </div>

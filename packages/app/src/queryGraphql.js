@@ -24,13 +24,13 @@ let axios = require('axios');
     let r = await axios(config);
     if (r.data.hasOwnProperty('errors') === true){
       if ( errorcb != null) {
-        errorcb(r.data.errors, null,4);
+        errorcb(JSON.stringify(r.data.errors, null,4));
+        return r.data.errors;
       }
-      throw JSON.stringify(r.data.errors);
     } else {
       if (resultcb != null) {
         resultcb(r.data.data.results);
+        return r.data.data.results;
       }
-      return r.data.data.results;
     }
  }

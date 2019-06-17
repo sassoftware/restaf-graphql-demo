@@ -13,9 +13,14 @@ module.exports = async function browseCasTable(_, args, context ){
     args.name   = name;
    
     let result = await caslBase(store,['browseCasTable.casl'], args, null);
-    let allData = result.items('results', 'casResults').toJS();
+    let casResults = result.items('results', 'casResults').toJS();
   
-
+    let allData = {
+        columns   : casResults.table.Fetch.schema,
+        rows      : casResults.table.Fetch.rows,
+        pagination: casResults.pagination
+    }
+  
     // return {allData: allData};
     return allData;
     

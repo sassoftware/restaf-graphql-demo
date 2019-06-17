@@ -27,7 +27,6 @@ function TableBrowser(props) {
                         {thead}
                         {tbody}
                     </table>
-
                 </div>;
     return table;
 }
