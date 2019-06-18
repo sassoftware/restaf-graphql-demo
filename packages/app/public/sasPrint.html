@@ -60,7 +60,7 @@
         host = APPENV.host;
         document.getElementById('msg').innerHTML = '<h1> Output here </h1>';
       }
-      function onSubmit() {
+      function runSubmit() {
         document.getElementById('msg').innerHTML = '<h1> Running </h1>';
         runScore()
           .then(r => {
@@ -109,13 +109,13 @@
     <div class="container">
       <h1 class="h1"> SAS Print</h1>
       <div class="content-form">
-        <form action="">
+        <form onSubmit="return false">
           <div class="form-group">
             <input class="form-control" id="TABLE" placeholder="Enter libname.dsname">
           </div>
 
         </form>
-        <button class="btn btn-primary" onclick="onSubmit()">Submit</button>
+        <button class="btn btn-primary" onclick="runSubmit()">Submit</button>
         <br><br>
         <div id='msg'></div>
       </div>

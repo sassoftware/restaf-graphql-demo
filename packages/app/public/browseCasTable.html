@@ -56,12 +56,17 @@
 
     <script>
     
-      function onSubmit() {
+      function runSubmit() {
         let table = document.getElementById('TABLE').value;
         debugger;
         uiLibrary.display('CasTableBrowserp', {table: table,  host: APPENV.host, from: 1, count: 20, format: true}, document.getElementById('display'));
+        return false;
        }
 
+       function onChange() {
+         document.getElementById('TABLE').value = document.getElementById('TABLE').value;
+       }
+   
     </script>
 
 
@@ -72,13 +77,13 @@
     <div class="container">
       <h1 class="h1"> Browse Cas Table</h1>
       <div class="content-form">
-        <form action="">
+        <form onSubmit="return false">
           <div class="form-group">
-            <input class="form-control" id="TABLE" placeholder="Enter caslib.tableName">
+            <input type="text" class="form-control" id="TABLE"  placeholder="Enter caslib.tableName">
           </div>
 
         </form>
-        <button class="btn btn-primary" onclick="onSubmit()">Submit</button>
+        <button class="btn btn-primary" onclick="runSubmit()">Submit</button>
         <br><br>
       </div>
       <div id="display"> </div>
