@@ -6,7 +6,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 
-function TableBrowser(props) {
+function TableBrowser (props) {
 
     debugger;
     let {columns, rows} = props.data;

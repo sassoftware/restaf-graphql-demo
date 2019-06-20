@@ -37,6 +37,8 @@ function CasTableBrowserp (props) {
     format: props.format
   };
 
+
+
   useEffect(() => {
     let gqString = `query browseCasTable($table: String, $from: Int, $count: Int, $format: Boolean){
             results: browseCasTable (from: $from, count: $count, format: $format, table: $table)
@@ -52,6 +54,10 @@ function CasTableBrowserp (props) {
       setResult(null);
     };
 
+    if (lastTable.current !== props.table) {
+      setResult(null);
+      setErrors(null);
+    }
     debugger;
     queryGraphql(props.host, gqString, control, handleResult, handleError);
   }, [ from, props.table ]);
