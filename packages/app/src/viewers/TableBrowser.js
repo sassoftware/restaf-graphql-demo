@@ -8,6 +8,7 @@ import React from "react";
 
 function TableBrowser(props) {
 
+    debugger;
     let {columns, rows} = props.data;
 
     let theadcols = columns.map(c => <th key={c.name} scope="col">{c.name}</th>);
@@ -21,6 +22,7 @@ function TableBrowser(props) {
     })
     let tbody = <tbody>{trows}</tbody>
 
+    debugger;
 
     let table = <div className="table-responsive-md">
                     <table className="table table-bordered">

@@ -2,73 +2,73 @@
  * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-
- /**
-  * Notes: Do not fully grok the hooks useEffect, useState etc...
-  * I should but having small mental block.
-  * I am 99% sure that the way I am doing it is not optimal
-  * Feel free to change it.
-  */
-
 import React from "react";
 import TableBrowser from "./TableBrowser";
 import queryGraphql from "../queryGraphql";
 
 function CasTableBrowserp (props) {
-  const { useState, useEffect, useRef } = React;
+  const {useState,  useEffect } = React;
 
-  const [ from, setFrom ] = useState(props.from);
-  const [ result, setResult ] = useState(null);
-  const [ errors, setErrors ] = useState(null);
+  debugger;
 
 
-  let count = props.count;
-  
-  let lastTable = useRef("");
-
-  useEffect(() => {
-    lastTable.current = control.table;
-  });
-
-  let control = {
+  let filter = {
     table : props.table,
-    from  : (lastTable.current !== props.table) ?  props.from : from,
-    count : count,
+    from  : props.from,
+    count : props.count,
     format: props.format
   };
+  let [ control, setControl ] = useState(filter);
 
+  let result       = null;
+  let errors       = null;
+  let upDisabled   = true;
+  let downDisabled = true;
+
+
+  /*
+  let [ result, setResult ] = useState(null); 
+  let [ errors, setErrors ] = useState(null);
+  let [ upDisabled, setUpDisabled ] = useState(true);
+  let [ downDisabled, setDownDisabled ] = useState(true);
+  */
+
+  
   useEffect(() => {
     let gqString = `query browseCasTable($table: String, $from: Int, $count: Int, $format: Boolean){
             results: browseCasTable (from: $from, count: $count, format: $format, table: $table)
             }`;
 
     const handleResult = r => {
-      setResult(r);
-      setErrors(null);
+      let { pagination } = r;
+      upDisabled   = (control.from === 1)? true : false;
+      downDisabled = (pagination.next === -1) ? true : false;
+      result  = r;
+      errors  = null;
     };
 
     const handleError = err => {
-      setErrors(err);
-      setResult(null);
+      errors = err;
+      result = null; 
     };
-
     debugger;
+   
     queryGraphql(props.host, gqString, control, handleResult, handleError);
-  }, [ from, props.table ]);
+  }, [ filter ]);
 
   const _onScroll = direction => {
-    let f = direction === "up" ? result.pagination.prev : result.pagination.next;
-    setFrom(f);
-    // setupDisabled(f === 1 ? true : false);
-    control = {
+    let from  = direction === "up" ? result.pagination.prev : result.pagination.next;
+    let count = result.pagination.count;
+    let filter = {
       table : props.table,
-      from  : f,
-      count : result.pagination.count,
+      from  : from,
+      count : count,
       format: props.format
     };
-  
+    setControl(filter);
   };
-
+ 
+console.log(result);
   let show = (
     <div className="container">
       <div className="form-group form-group-sm">
@@ -77,13 +77,13 @@ function CasTableBrowserp (props) {
             {errors}
             <button
               className="btn btn-secondary"
-              disabled={(result === null || from === 1)}
+              disabled={upDisabled}
               onClick={() => _onScroll("up")}>
               up
             </button>
             <button
               className="btn btn-secondary"
-              disabled={(result === null || result.pagination.next === -1)}
+              disabled={downDisabled}
               onClick={() => _onScroll("down")}>
               down
             </button>

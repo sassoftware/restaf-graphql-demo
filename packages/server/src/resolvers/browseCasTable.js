@@ -4,7 +4,7 @@
 */
 'use strict';
 let caslBase = require('../lib/caslBase');
-module.exports = async function browseCasTable(_, args, context ){
+module.exports = async function browseCasTable(_, args, context){
 
     let { store } = context;
 

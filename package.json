@@ -33,6 +33,7 @@
     "postinstall": "node setupdockerrun.js"
   },
   "dependencies": {
+    "eslint-config-prettier": "^5.0.0",
     "restaf-graphql-server": "^1.3.1"
   }
 }
