@@ -65,7 +65,6 @@ function CasTableBrowserp (props) {
   const _onScroll = direction => {
     let f = direction === "up" ? result.pagination.prev : result.pagination.next;
     setFrom(f);
-    // setupDisabled(f === 1 ? true : false);
     control = {
       table : props.table,
       from  : f,
