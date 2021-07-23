@@ -1,4 +1,5 @@
-# restaf-graphql-demo
+# restaf-graphql-demo (archived)
+## This repository is archived and is no longer accepting contributrions or addressing issues.
 
 This repository has two projects
 
